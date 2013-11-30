@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: postInfoWidget 0.1\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-10-02T23:46:22+00:00\n"
+"Last-Translator: brol\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Personalizations"
+msgstr "Personnalisations"
+
+msgid "Type of menu:"
+msgstr "Type de menu :"
+
+msgid "Season:"
+msgstr "Saison :"
+
+msgid "Spring"
+msgstr "Printemps"
+
+msgid "Summer"
+msgstr "Eté"
+
+msgid "Autumn"
+msgstr "Automne"
+
+msgid "Winter"
+msgstr "Hiver"
+
+msgid "Default"
+msgstr "Par défaut"
+
+msgid "Display dock:"
+msgstr "Affichage du dock :"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"

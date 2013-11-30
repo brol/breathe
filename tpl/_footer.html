@@ -1,0 +1,37 @@
+<div id="dockbar">
+	<div class="container">{{tpl:include src="_dock.html"}}</div>
+</div><!-- End #dockbar -->
+
+<div id="menunav">
+  {{tpl:include src="_menunav.html"}}
+</div><!-- End #menunav -->
+
+<div id="footer">
+	<div class="container footer-divider clearfix">
+		<div class="categories">
+			<h4>{{tpl:lang Menu}}</h4>
+			<ul class="footer-cat clearfix">
+				<tpl:Categories level="1">
+					<li><a href="{{tpl:CategoryURL}}" title="{{tpl:CategoryDescription cut_string="80" remove_html="1"}}...">{{tpl:CategoryTitle encode_html="1"}}</a></li>
+				</tpl:Categories>
+			</ul><!-- End #footer-cats -->
+		</div><!-- End #categories -->
+
+		<div class="about">
+      <tpl:Entries type="page" url="A-propos" no_context="1" ignore_pagination="1">
+			<h4>{{tpl:EntryTitle encode_html="1"}}</h4>
+			<!-- # Entry with an excerpt -->
+			<tpl:EntryIf extended="1">
+			<div class="about-text">{{tpl:EntryExcerpt}}</div>
+			</tpl:EntryIf>
+		  <div class="about-text">{{tpl:EntryContent}}</div>
+      </tpl:Entries>
+			<p class="copyright">
+				&copy; {{tpl:BlogEditor}} - {{tpl:BlogCopyrightNotice}} - {{tpl:lang Designed by}} <a href="http://www.brol.info">brol</a> - {{tpl:SysPoweredBy}}
+			</p>
+		</div><!-- End #about -->
+	</div><!-- End #container -->
+
+</div><!-- End #footer -->
+
+{{tpl:SysBehavior behavior="publicFooterContent"}}
