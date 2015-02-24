@@ -12,11 +12,17 @@ msgstr ""
 msgid "Personalizations"
 msgstr "Personnalisations"
 
-msgid "Type of menu:"
-msgstr "Type de menu :"
+msgid "Menu to display:"
+msgstr "Menu à afficher :"
 
-msgid "Season:"
-msgstr "Saison :"
+msgid "Plugins menu allowed: <a href="http://forum.dotclear.org/viewtopic.php?id=32705">Adjaya Menu</a> plugin (horizontal and vertical), or SimpleMenu."
+msgstr "Plugins menu acceptés : plugin <a href="http://forum.dotclear.org/viewtopic.php?id=32705">Menu d'Adjaya</a> (horizontal et vertical), ou SimpleMenu."
+
+msgid "Colors"
+msgstr "Couleurs"
+
+msgid "Color display:"
+msgstr "Couleur à afficher :"
 
 msgid "Spring"
 msgstr "Printemps"
@@ -33,7 +39,7 @@ msgstr "Hiver"
 msgid "Default"
 msgstr "Par défaut"
 
-msgid "Display dock:"
+msgid "Dock display:"
 msgstr "Affichage du dock :"
 
 msgid "Yes"
@@ -41,3 +47,25 @@ msgstr "Oui"
 
 msgid "No"
 msgstr "Non"
+
+msgid "The slides can display originals images 650px wide x 300px high.<br />They are positioned under the menu bar, the range of tickets will be below and sidebar to the right.<br />It is not possible to simultaneously view two slides in the blog."
+msgstr "Les slides permettent d'afficher des images originales de 650px de large x 300px de haut.<br />Ils sont positionnés sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite.<br />Il n'est pas possible d'afficher simultanément les deux slides dans le blog."
+
+msgid "Slide without Thumbnails"
+msgstr "Slide sans vignette"
+
+msgid "The title and the text (limited to the first 300 characters of the ticket) appears at the bottom of the image on a translucent background with a slide effect."
+msgstr "Le titre ainsi que le texte (limité au 300 premiers caractères du billet) s'affiche en bas de l'image sur un fond translucide avec un effet de slide."
+
+msgid "Slide with Thumbnails"
+msgstr "Slide avec vignette"
+
+msgid "The title and the text (limited to the first 100 characters of the ticket) appears at the bottom of the image on a translucent background. The Tab is as thumbnails."
+msgstr "Le titre ainsi que le texte (limité au 100 premiers caractères du billet) s'affiche en bas de l'image sur un fond translucide. La tabulation est sous forme de vignettes."
+
+msgid "By default, the slide is based on the last 4 selected tickets. However, you can use it to display the Notes of a category or tag.<br />For a specific class will be put in place of <code>&lt;tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1"&gt;</code> this <code>&lt;tpl:Entries category="Url-of-the-category" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.<br />And for a specific tag, this <code>&lt;tpl:Entries tag="Name of the tag" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>."
+msgstr "Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous pouvez cependant l'utiliser pour afficher les billets d'une catégorie ou d'un tag.<br />Pour une catégorie précise on mettra à la place de <code>&lt;tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1"&gt;</code> ceci <code>&lt;tpl:Entries category="Url-de-votre-categorie" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.<br />Et pour un mot-clé précis, cela <code>&lt;tpl:Entries tag="Nom du tag" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>."
+
+msgid "Display on the following pages:"
+msgstr "Afficher sur les pages suivantes :"
+

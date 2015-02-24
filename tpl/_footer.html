@@ -6,7 +6,7 @@
   {{tpl:include src="_menunav.html"}}
 </div><!-- End #menunav -->
 
-<div id="footer">
+<div id="footer" role="contentinfo">
 	<div class="container footer-divider clearfix">
 		<div class="categories">
 			<h4>{{tpl:lang Menu}}</h4>
@@ -26,10 +26,10 @@
 			</tpl:EntryIf>
 		  <div class="about-text">{{tpl:EntryContent}}</div>
       </tpl:Entries>
-			<p class="copyright">
-				&copy; {{tpl:BlogEditor}} - {{tpl:BlogCopyrightNotice}} - {{tpl:lang Designed by}} <a href="http://www.brol.info">brol</a> - {{tpl:SysPoweredBy}}
-			</p>
 		</div><!-- End #about -->
+    <p class="copyright">
+			&copy; {{tpl:BlogEditor}} - {{tpl:BlogCopyrightNotice}} - {{tpl:lang Designed by}} <a href="https://github.com/brol/breathe">Pierre Van Glabeke</a> - {{tpl:SysPoweredBy}}
+		</p>
 	</div><!-- End #container -->
 
 </div><!-- End #footer -->

@@ -2,18 +2,127 @@
 /* BEGIN LICENSE BLOCK
 This file is part of breathe, a theme for Dotclear.
 
-Copyright (c) 2010
-Pierre Van Glabeke contact@brol.info
+Copyright (c) 2013 - 2015
+Pierre Van Glabeke https://github.com/brol/breathe
 
-Licensed under the GPL version 2.0 license.
+Licensed under the Creative Commons version 4.0 license.
 A copy of this license is available in LICENSE file or at
-http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+http://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr
 END LICENSE BLOCK */
 
 if (!defined('DC_RC_PATH')) { return; }
 
 l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/public');
 
+# appel css menu
+$core->addBehavior('publicHeadContent','breathemenu_publicHeadContent');
+
+function breathemenu_publicHeadContent($core)
+{
+	$style = $core->blog->settings->themes->breathe_menu;
+	if (!preg_match('/^menuH|menuV|simplemenu$/',$style)) {
+		$style = 'menuV';
+	}
+
+	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
+	echo '<link rel="stylesheet" type="text/css" media="projection, screen" href="'.$url."/css/menus/".$style.".css\" />\n";
+}
+
+# appel css couleur
+$core->addBehavior('publicHeadContent','breathecolor_publicHeadContent');
+
+function breathecolor_publicHeadContent($core)
+{
+	$style = $core->blog->settings->themes->breathe_color;
+	if (!preg_match('/^gray|spring|summer|autumn|winter$/',$style)) {
+		$style = 'gray';
+	}
+
+	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/colors/".$style.".css\" />\n";
+}
+
+# appel css dock
+$core->addBehavior('publicHeadContent','breathedock_publicHeadContent');
+
+function breathedock_publicHeadContent($core)
+{
+	$style = $core->blog->settings->themes->breathe_dock;
+	if (!preg_match('/^yesdock|nodock$/',$style)) {
+		$style = 'yesdock';
+	}
+
+	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/dock/".$style.".css\" />\n";
+	echo '<script type="text/javascript" src="'.$url."/js/dock.js\"></script>\n";
+}
+
+# appel css slide1
+if ($core->blog->settings->themes->breathe_slide1)
+{
+	$core->addBehavior('publicHeadContent',
+		array('tplBreathe_slide1','publicHeadContent'));
+}
+
+class tplBreathe_slide1
+{
+	public static function publicHeadContent($core)
+	{
+	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/slide1.css\" />\n";
+	echo '<script type="text/javascript" src="'.$url."/js/s3Slider.js\"></script>\n";
+	}
+}
+
+# appel css slide2
+if ($core->blog->settings->themes->breathe_slide2)
+{
+	$core->addBehavior('publicHeadContent',
+		array('tplBreathe_slide2','publicHeadContent'));
+}
+
+class tplBreathe_slide2
+{
+	public static function publicHeadContent($core)
+	{
+	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/slide2.css\" />\n";
+	echo '<script type="text/javascript" src="'.$url."/js/jquery.tools.js\"></script>\n";
+	}
+}
+
+# appel css slide on the following pages
+$core->addBehavior('publicHeadContent','breatheslidenav_publicHeadContent');
+
+function breatheslidenav_publicHeadContent($core)
+{
+	$style = $core->blog->settings->themes->breathe_slidenav;
+	if (!preg_match('/^yesslidenav|noslidenav$/',$style)) {
+		$style = 'yesslidenav';
+	}
+
+	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/".$style.".css\" />\n";
+}
+
+# exclure billet current
+$core->addBehavior('templateBeforeBlock',array('behaviorsExcludeCurrentPost','templateBeforeBlock'));
+
+class behaviorsExcludeCurrentPost
+{
+	public static function templateBeforeBlock($core,$b,$attr)
+	{
+	  if ($b == 'Entries' && isset($attr['exclude_current']) && $attr['exclude_current'] == 1)
+	  {
+		return
+		"<?php\n".
+		'$params["sql"] = "AND P.post_url != \'".$_ctx->posts->post_url."\' ";'."\n".
+		"?>\n";
+	  }
+	}
+}
+
+# gravatar
 $core->tpl->addValue('gravatar', array('gravatar', 'tplGravatar'));
 
 class gravatar {
@@ -39,59 +148,4 @@ class gravatar {
                                       sprintf($alttxt, '\'.$_ctx->comments->comment_author.\'') : $alttxt);
     return '<?php echo \'' . $gtag . '\'; ?>';
   }
-}
-
-$core->addBehavior('templateBeforeBlock',array('behaviorsExcludeCurrentPost','templateBeforeBlock'));
-
-class behaviorsExcludeCurrentPost
-{
-	public static function templateBeforeBlock($core,$b,$attr)
-	{
-	       if ($b == 'Entries' && isset($attr['exclude_current']) && $attr['exclude_current'] == 1)
-	       {
-		       return
-		       "<?php\n".
-		       '$params["sql"] = "AND P.post_url != \'".$_ctx->posts->post_url."\' ";'."\n".
-		       "?>\n";
-	       }
-	}
-}
-
-$core->addBehavior('publicHeadContent','breathemenu_publicHeadContent');
-
-function breathemenu_publicHeadContent($core)
-{
-	$style = $core->blog->settings->themes->breathemenu_style;
-	if (!preg_match('/^menuH|menuV$/',$style)) {
-		$style = 'menuH';
-	}
-
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/".$style.".css\" />\n";
-}
-
-$core->addBehavior('publicHeadContent','breathestyle_publicHeadContent');
-
-function breathestyle_publicHeadContent($core)
-{
-	$style = $core->blog->settings->themes->breathestyle_style;
-	if (!preg_match('/^spring|summer|autumn|winter|gray$/',$style)) {
-		$style = 'gray';
-	}
-
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/".$style.".css\" />\n";
-}
-
-$core->addBehavior('publicHeadContent','breathedock_publicHeadContent');
-
-function breathedock_publicHeadContent($core)
-{
-	$style = $core->blog->settings->themes->breathedock_style;
-	if (!preg_match('/^dock|nodock$/',$style)) {
-		$style = 'dock';
-	}
-
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/".$style.".css\" />\n";
 }

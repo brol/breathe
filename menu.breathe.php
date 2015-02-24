@@ -2,8 +2,8 @@
 /* BEGIN LICENSE BLOCK
 This file is part of breathe, a theme for Dotclear.
 
-Copyright (c) 2010
-Pierre Van Glabeke contact@brol.info
+Copyright (c) 2013 - 2015
+Pierre Van Glabeke https://github.com/brol/breathe
 
 Licensed under the GPL version 2.0 license.
 A copy of this license is available in LICENSE file or at
@@ -29,4 +29,3 @@ $widget_theme_style = array(
 	'W_LI_ACTIVE'		=> 'class="current_page_item"',
 	'W_LI_ACTIVE_SM'	=> 'class="current_page_item"'
 );
-?>

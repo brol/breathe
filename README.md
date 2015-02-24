@@ -1,8 +1,3 @@
-breathe
-=======
-
-thème pour dotclear 2
-
 = Préambule =
 
 Les plugins suivants sont requis : [http://aiguebrun.adjaya.info/post/20090202/Telegarger-le-Plugin-Menu-pour-Dotclear2-Download/ menu], [http://lab.dotclear.org/wiki/plugin/listImages/ List Images from entries] et [http://lab.dotclear.org/wiki/plugin/templateWidget/ templateWidget].[[BR]]
@@ -33,7 +28,7 @@ ou une image liée (/corpoweeeb/img/logo.png) :
 Choisir l'un ou l'autre en commentant/décommentant le code (le code pour l'image est, par défaut, commenté). Les codes de la css seront évidemment à adapter en fonction de la hauteur de votre image (attribut height de #title dans style.css). Concernant la description du blog, si vous affichez une image en titre, il sera nécessaire d'adapter le code css afin de repositionner l'affichage du texte de la description du blog.
 
 '''La page d'accueil'''[[BR]]
-Afin de ne pas répéter le slide présent sur la page d'accueil lors de la navigation dans les éventuelles pages suivantes, le code du slide est entouré de la balise 
+Afin de ne pas répéter le slide présent sur la page d'accueil lors de la navigation dans les éventuelles pages suivantes, le code du slide est entouré de la balise
 {{{
 <tpl:SysIf current_mode="default">...</tpl:SysIf>
 }}}
@@ -137,7 +132,7 @@ Exemple avec le fichier category.html :
 
       <!-- # --BEHAVIOR-- publicEntryBeforeContent -->
      {{tpl:SysBehavior behavior="publicEntryBeforeContent"}}
-      
+
         <div class="entryimages">
        {{tpl:EntryImages size="o" html_tag="div" link="none" legend="none" length="1"}}
         </div>
@@ -154,7 +149,7 @@ Exemple avec le fichier category.html :
 
         <!-- # --BEHAVIOR-- publicEntryAfterContent -->
        {{tpl:SysBehavior behavior="publicEntryAfterContent"}}
-        
+
 			</div><!-- End post-intro -->
 		</div><!-- End post-content -->
 
@@ -265,7 +260,7 @@ Sont intégrés divers tpl dans le footer (_footer.html) :[[BR]]
 === Astuces ===
 
  * '''Positionnement du moteur de recherche dans la barre de menu'''
-Dans post.html, déplacer le 
+Dans post.html, déplacer le
 {{{<div id="recherche">...</div>}}} après le {{{<tpl:SysIf has_tag="MenuFreshy">{{tpl:MenuFreshy level="0"}}</tpl:SysIf>}}}.[[BR]]
 Dans style.css, modifier les styles de #recherche et #search comme indiqué dans le fichier.
 
@@ -297,7 +292,7 @@ Ajoutez après la balise <tpl:Entries>, la condition excluant la catégorie à a
     <div class="post single">
 }}}
 
-Le ! devant l'URL permet d'inverser le sens du test. 
+Le ! devant l'URL permet d'inverser le sens du test.
 
 Puis on ferme le bloc par ceci :
 
@@ -306,7 +301,7 @@ Puis on ferme le bloc par ceci :
 <!-- # -- End liste des billets single -->
 </tpl:CategoryIf>
 }}}
- 
+
 A la suite, on ajoute le code pour l'affichage des billets de la catégorie particulière selon le mode d'affichage conventionnel, en prenant soin de renseigner son url. Vous devez obtenir ceci :
 
 {{{
@@ -345,7 +340,7 @@ A la suite, on ajoute le code pour l'affichage des billets de la catégorie part
 
             <!-- # --BEHAVIOR-- publicEntryAfterContent -->
             {{tpl:SysBehavior behavior="publicEntryAfterContent"}}
-            
+
             </div><!-- End post-intro -->
             </div><!-- End post-content -->
 

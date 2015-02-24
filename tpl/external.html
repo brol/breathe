@@ -1,43 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{tpl:BlogLanguage}}" lang="{{tpl:BlogLanguage}}">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html lang="{{tpl:BlogLanguage}}">
 
-  <meta name="ROBOTS" content="{{tpl:BlogMetaRobots}}" />
+  <head>
+    <meta charset="UTF-8" />
 
-  <title>{{tpl:EntryTitle encode_html="1"}} - {{tpl:BlogName encode_html="1"}}</title>
-  <meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-  <meta name="author" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
-  <meta name="date" scheme="W3CDTF" content="{{tpl:EntryDate iso8601="1"}}" />
+    <meta name="ROBOTS" content="{{tpl:BlogMetaRobots}}" />
 
-  <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-  <meta name="dc.title" content="{{tpl:EntryTitle encode_html="1"}}" />
-  <meta name="dc.creator" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
-  <meta name="dc.language" content="{{tpl:EntryLang}}" />
-  <meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
-  <meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-  <meta name="dc.date" scheme="W3CDTF" content="{{tpl:EntryDate iso8601="1"}}" />
-  <meta name="dc.type" content="text" />
-  <meta name="dc.format" content="text/html" />
+    <title>{{tpl:EntryTitle encode_html="1"}} - {{tpl:BlogName encode_html="1"}}</title>
+    <meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
+    <meta name="author" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
+    <meta name="date" content="{{tpl:EntryDate iso8601="1"}}" />
 
-  <link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
-  <link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
+    <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+    <meta property="dc.title" content="{{tpl:EntryTitle encode_html="1"}}" />
+    <meta property="dc.creator" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
+    <meta property="dc.language" content="{{tpl:EntryLang}}" />
+    <meta property="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
+    <meta property="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
+    <meta property="dc.date" content="{{tpl:EntryDate iso8601="1"}}" />
+    <meta property="dc.type" content="text" />
+    <meta property="dc.format" content="text/html" />
 
-  <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="{{tpl:BlogFeedURL type="atom"}}" />
+    <link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
+    <link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
 
-  {{tpl:include src="_head.html"}}
-</head>
+    <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="{{tpl:BlogFeedURL type="atom"}}" />
 
-<body class="dc-page-related">
-<div id="page">
-{{tpl:include src="_top.html"}}
+    {{tpl:include src="_head.html"}}
+  </head>
 
-<div id="wrapper">
+  <body class="dc-page-related">
+    <div id="page">
 
-    <div id="main">
+      {{tpl:include src="_top.html"}}
 
-      <div id="post-{{tpl:EntryID}}" class="post">
+      <div id="wrapper">
+
+	<div id="main" role="main">
+
+      <div id="p{{tpl:EntryID}}" class="post" role="article">
 
 					<div class="post-meta clearfix">
 						<h2 class="post-title left">{{tpl:EntryTitle encode_html="1"}}</h2>
@@ -72,7 +73,7 @@
 
 </div> <!-- End #main -->
 
-<div id="sidebar">
+<div id="sidebar" role="complementary">
   <div id="blognav">
     {{tpl:Widgets type="nav"}}
   </div> <!-- End #blognav -->

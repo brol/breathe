@@ -1,0 +1,54 @@
+/* BEGIN LICENSE BLOCK
+This file is part of breathe, a theme for Dotclear.
+
+Copyright (c) 2013 - 2015
+Pierre Van Glabeke https://github.com/brol/breathe
+
+Licensed under the Creative Commons version 4.0 license.
+A copy of this license is available in LICENSE file or at
+http://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr
+END LICENSE BLOCK */
+#menu {display:none;}
+
+/* SimpleMenu */
+#menu_container {
+	position:relative;
+	z-index:85;
+	margin:0;
+  padding:0;
+}
+#navsm {
+	padding:0;
+	height:37px;
+}
+html>body #navsm {
+}
+#navsm .menu_container {
+	height:37px;
+	line-height:37px;
+	margin:0;
+	padding:0;
+}
+
+#supranav {
+  float: left;
+  width: 980px;
+  margin: 0;
+  position: relative;
+  list-style:none;
+	padding:0;
+}
+#supranav li {
+  float: left;
+  line-height: 37px;
+  margin: 0;
+}
+#supranav li a {
+  display: block;
+  padding: 0 16px;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+#supranav li a:hover {
+  text-decoration: underline;
+}

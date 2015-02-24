@@ -1,4 +1,4 @@
-<div id="top">
+<div id="top" role="banner">
   <div class="container">
 		<div id="title">
 			<h1><span><a href="{{tpl:BlogURL}}">{{tpl:BlogName encode_html="1"}}</a></span></h1>
@@ -8,7 +8,7 @@
 			<div id="recherche">
       <form method="get" action="{{tpl:BlogURL}}" id="topsearch">
       <p>
-        <input type="text" value="Rechercher" onfocus="this.value='';" name="qx" id="qx" maxlength="255" size="10"/>
+        <input type="text" value="{{tpl:lang Research}}" onfocus="this.value='';" name="q" id="q" maxlength="255" size="10"/>
         <input type="submit" value="ok" class="submit"/>
       </p>
       </form>
@@ -27,9 +27,14 @@
     <div id="menu">
 			<div class="menu_container">
 			<tpl:SysIf has_tag="MenuFreshy">{{tpl:MenuFreshy level="0"}}</tpl:SysIf>
-			<!-- déplacez ici la <div id="recherche">...</div> pour intégrer le formulaire
-      de recherche au menu et modifiez le style.css -->
 			</div>
-    </div>
+    </div><!-- # -- plugin Menu -->
+
+    <div id="navsm">
+			<div class="menu_container">
+      {{tpl:SimpleMenu id="supranav" description="title"}}
+      </div>
+    </div><!-- # -- plugin SimpleMenu -->
+    
   </div><!-- End container -->
-</div><!-- End header_image -->
+</div><!-- End menu_container -->

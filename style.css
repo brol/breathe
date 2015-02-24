@@ -1,14 +1,13 @@
 /* BEGIN LICENSE BLOCK
 This file is part of breathe, a theme for Dotclear.
 
-Copyright (c) 2010
-brol contact@brol.info
+Copyright (c) 2013 - 2015
+Pierre Van Glabeke https://github.com/brol/breathe
 
-Licensed under the GPL version 2.0 license.
+Licensed under the Creative Commons version 4.0 license.
 A copy of this license is available in LICENSE file or at
-http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+http://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr
 END LICENSE BLOCK */
-@import url(slide650V.css);
 
 body {
   font-size : 0.75em;
@@ -21,12 +20,8 @@ body {
   height:auto;
 }
 
-a:hover {
-	text-decoration:none;
-}
-a {
-	text-decoration:none;
-}
+a:hover {	text-decoration:none; }
+a {	text-decoration:none; }
 
 /* Clearfix */
 .clearfix:after {
@@ -37,21 +32,11 @@ a {
   line-height: 0;
   height: 0;
 }
-.clearfix {
-  display: inline-block;
-}
-html[xmlns] .clearfix {
-  display: block;
-}
-* html .clearfix {
-  height: 1%;
-}
-.left, .alignleft {
-	float:left;
-}
-.right, .alignright {
-	float:right;
-}
+.clearfix { display: block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+.left, .alignleft { float:left; }
+.right, .alignright { float:right; }
 .aligncenter {
 	margin:0 auto;
 	display:block;
@@ -93,17 +78,16 @@ html[xmlns] .clearfix {
   position : absolute;
   /* display:none; */ /* à décommenter pour masquer la description du blog */
 }
-/* moteur de recherche décommenter #recherche pour un positionnement dans la barre de menu */
-/*#recherche {position:relative;}*/
+
 #topsearch {
-  width : 220px /* 280px pour un positionnement dans la barre de menu */;
+  width : 220px;
   margin : 0 10px;
   padding : 1px;
   height : 27px;
   -moz-border-radius : 100px;
   -webkit-border-radius : 100px;
   position : absolute;
-  top : 10px /* 3px pour un positionnement dans la barre de menu */;
+  top : 10px;
   right : 0;
 }
 #topsearch p {
@@ -114,16 +98,16 @@ html[xmlns] .clearfix {
   -moz-border-radius : 100px;
   -webkit-border-radius : 100px;
 }
-#topsearch p #qx {
-  width : 158px;
+#topsearch p #q {
+  width : 178px;
   border : none;
-  padding : 5px 10px;
+  padding : 5px 0 5px 10px;
   background : transparent;
   float : left;
   font-family : inherit;
   font-size : 1em;
 }
-#topsearch p #qx:focus {
+#topsearch p #q:focus {
   font-style : normal;
 }
 #topsearch p .submit {
@@ -259,8 +243,6 @@ html[xmlns] #wrapper {
 	margin:0 0 25px 0;
 }
 
-
-
 .post-info {
 	text-align:right;
 	font-size:1em;
@@ -294,10 +276,16 @@ div.post-intro-moy {
   clear:both;
   max-width:100%;
 }
+.single.odd {
+	margin:0 25px 20px 0;
+	width:312px;
+  height:auto;
+	float:left;
+}
 
 .single {
-	margin:0 25px 20px 0;
-	width:300px;
+	margin:0 0 20px 0;
+	width:312px;
   height:auto;
 	float:left;
 }
@@ -377,10 +365,12 @@ div.post-intro-moy {
   text-align:center;
   display:block;
 }
+.post embed,.post iframe {
+  max-width: 100%;
+}
 .dc-post .page-content,
 .dc-page .page-content,
-.dc-search .page-content,
-.dc-contribute .page-content {
+.dc-search .page-content {
   text-align:justify;
   padding:22px 22px 0;
 }
@@ -389,6 +379,7 @@ div.post-intro-moy {
   text-align:justify;
   padding:0;
 	border:none;
+  clear:both;
 }
 .dc-page .page-content {
 	/*border:none;*/
@@ -431,13 +422,18 @@ div.post-intro-moy {
   font-size:1.4em;
   font-weight:normal;
 }
-.post-tags ul, .post-cat-related ul, #attachments ul {
+.post-tags ul, .post-cat-related ul {
   margin: 0 1.5em 1em 0;
   padding-left:3.333em;
   list-style-type:disc;
 }
-
-.dc-post .post-tags li, .dc-contribute .post-tags li {
+#attachments ul {
+  margin: 0 1.5em 1em 0;
+  padding-left:3.333em;
+  list-style-type:none;
+}
+#attachments li.audio object {margin:0;vertical-align:bottom;}
+.dc-post .post-tags li {
 	display: inline;
 	list-style:none;
 }
@@ -536,6 +532,7 @@ div.post-intro-moy {
 #pings {
   width:650px;
 }
+#comment-form h3 {cursor:pointer;}
 #comment-form h3, #pings h3 {
   bottom:0;
   margin:0;
@@ -615,8 +612,7 @@ p.message {
 }
 #pr .submit,
 .buttons .preview,
-.dc-contactme #comment-form .submit,
-.dc-contribute #entry-form .submit {
+.dc-contactme #comment-form .submit {
   text-transform:capitalize;
 }
 
@@ -646,7 +642,7 @@ p.message {
 	float:right;
 	margin:0 10px 0 0;
 }
-
+#search.widget {display:none;visibility:hidden;}
 #sidebar #blognav, #sidebar #blogextra {
   margin:0;
   padding:0;
@@ -893,15 +889,11 @@ p.message {
   max-width:100%;
 }
 /* widget text avec contour */
-#sidebar .wtext img {
+#sidebar img {
   margin:0 auto;
   padding:5px 10px 10px;
   display:block;
-  max-width:100%;
-}
-#sidebar div.wtext {
-  padding:0;
-  margin: 0 0 20px;
+  max-width:276px;
 }
 #sidebar #newnav {
   padding:0;
@@ -913,7 +905,7 @@ p.message {
 }
 /* cat-info : description catégorie + sous-cat */
 .dc-category .post-content.cat-info {
-  padding:17px 22px 11px;
+  padding:5px 10px 5px;
   border-bottom:0;
 }
 .dc-category .cat-subcat,
@@ -936,37 +928,6 @@ p.message {
 .dc-category #subcategories ul {
   margin:0;
 }
-/* sous-cat en tableau d'images */
-/*.dc-category #subcategories {
-  margin: 0 auto;
-}
-.dc-category .subcat {
-  margin:0;
-  padding: 0 10.6px;
-  float:left;
-  width:180px;
-  height:auto;
-}
-.dc-category .catdesctxt {
-  padding: 5px 0 0 0;
-}
-.dc-category .subcat .catdesctxt {
-  padding: 5px 0 0 0;
-  font-size:0.9em;
-  text-align:justify;
-}
-.dc-category .subcat h4 {
-  font-size:1.3em;
-  font-family: Arial,Helvetica,sans-serif;
-  font-weight:normal;
-}
-.dc-category .subcat h4 a:hover {
-}
-.dc-category .subcat h4 a {
-}
-.dc-category .subcat img {
-  max-width:100%;
-}*/
 
 /* page tous les tags */
 .dc-tags .tags {
@@ -1012,29 +973,26 @@ p.message {
 }
 .footer-cat li {
   margin:5px 0;
-  padding:0 0 0 9px;
-  width:170px;
+  padding:0 /*0 0 9px*/;
+  width:175px;
   height:auto;
   float:left;
 }
 .footer-cat li a {
   margin:0;
-  padding:0 9px 0 0;
+  padding:1px 9px 0 9px;
   width:auto;
   height:23px;
   line-height:23px;
   float:left;
   display:block;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
-.footer-cat li a span {
-}
-.footer-cat li:hover, .footer-cat li:hover a {
-  background-position:0% -23px;
+.footer-cat li a:hover {
   cursor:pointer;
   text-decoration:none;
-}
-.footer-cat li:hover a {
-  background-position:100% -23px;
 }
 #footer .about {
   margin:0 10px 0 0;
@@ -1057,6 +1015,9 @@ p.about-text {
 p.copyright {
 	margin:10px 0 0 0;
   font-size: 0.92em;
+  padding-top:20px;
+  clear:both;
+  text-align:center;
 }
 .copyright a:hover {
   text-decoration:underline;
@@ -1117,57 +1078,6 @@ p.copyright {
   margin:20px 0 0 10px;
   text-transform:capitalize;
 }
-/*subscribe to comments */
-.dc-subscribe #content h2 {
-  margin : 0 0 10px 0;
-  padding : 0 0 10px 0;
-}
-.dc-subscribe #navlinks {
-  margin : 0 10px 20px 10px;
-  padding : 0;
-}
-.dc-subscribe #comment-form {
-  margin:0;
-}
-.dc-subscribe legend {
-  font-weight: bold;
-  margin-bottom: 10px;
-  font-size:1.3em;
-}
-.dc-subscribe #comment-form fieldset {
-  margin : 10px 0 0 0;
-  padding : 0;
-  border : none;
-}
-.dc-subscribe .email {
-  margin : 10px 0 10px 50px;
-  padding : 0;
-  border : none;
-}
-.dc-subscribe ul {
-  list-style-type: none;
-}
-.subscribe {
-  margin : 0 10px;
-  padding : 10px 0 0 0;
-}
-#subscribetocomments_block {
-  width : 650px;
-  padding : 0 10px;
-  margin-bottom:20px;
-  float : left;
-  clear : both;
-}
-#subscribetocomments_block h3 {
-  display:none;
-}
-#subscribeToComments_checkbox {
-  margin:10px 10px 0;
-  padding:0;
-}
-.dc-subscribe #main .submit-comment, .dc-subscribe #main .submit {
-	margin:10px 0 0;
-}
 
 /* share */
 .share {
@@ -1175,98 +1085,6 @@ p.copyright {
   padding:0 0 5px;
 }
 
-/* contribute */
-.dc-contribute #content h2 {
-  margin : 0 0 20px 0;
-  padding : 0 0 20px 0;
-  font-size : 3em;
-  line-height : 1.3;
-}
-.dc-contribute .content-inner {
-  margin: 0 10px;
-}
-.dc-contribute #help {
-  font-size:12px;
-  margin-left:20px;
-}
-.dc-contribute #comments, .dc-contribute #main input[type="text"], .dc-contribute #main textarea {
-  width:640px;
-}
-.dc-contribute .redaction {
-  width:650px;
-}
-.dc-contribute #comments h3, .dc-contribute #available-tags h3 {
-  margin:0 0 10px 0;
-  font-size:1.5em;
-}
-.dc-contribute p.error {
-  font-weight : normal;
-  margin : 0 10px 20px 10px;
-  font-size:1.3em;
-}
-.dc-contribute p.message {
-  font-weight : normal;
-  margin : 0 10px 20px 10px;
-  font-size:1.3em;
-}
-#contribute {
-  clear:both;
-  float:left;
-  margin: 0;
-}
-.dc-contribute .post-content {
-  text-align:justify;
-  padding:0 0 22px;
-	border:none;
-}
-.dc-contribute hr {
-  clear:both;
-}
-.dc-contribute #entry-form p {
-  margin-bottom:20px;
-}
-.dc-contribute .submit {
-  text-transform:capitalize;
-}
-.dc-contribute #wiki-syntax-reference {
-  clear:both;
-  display:block;
-  padding:15px 0 0 0;
-}
-.dc-contribute #main label {clear:both;}
-
-/* plugin tweet */
-.tweet ul {
-  background: none;
-  margin: 0 0 1.5em 0;
-}
-#sidebar .tweet ul.tweet_list {
-  margin:0;
-  width:275px;
-}
-#sidebar .tweet ul.tweet_list li {padding:0.5em 0;}
-.tweet_list li {
-  padding: 0.5em 0;
-}
-#sidebar .tweet_list .tweet_avatar {
-  padding-right:0px;
-}
-#sidebar .tweet_content {
-  padding-left:35px;
-  display:block;
-}
-#sidebar .tweet_date {
-  display:block;
-}
-#sidebar li a.tweet_date {
-  font-size:1.05em;
-}
-#sidebar .tweet_text {
-  font-size:1.1em;
-}
-#sidebar .tweet_text a {
-  font-size:1em;
-}
 /* listimage */
 /* Styles pour EntryImages */
 .post .entryimages {
@@ -1302,20 +1120,16 @@ hr.clearer {
 	clear: both;
 }
 .feed {
-	padding:1px 0 0 23px;
+	padding:1px 0 1px 18px;
 	line-height:16px;
 	background:url(img/feed.png) no-repeat center left;
 }
-/* plugin sendtofriend */
-.dc-sendtofriend .buttons {
-  margin-left : 10px;
+.rss {
+	padding:1px 0 1px 23px;
+	line-height:16px;
+	background:url(img/rss.png) no-repeat center left;
 }
-.dc-sendtofriend #comment-form {
-  margin: 0 0 10px;
-}
-.dc-sendtofriend .content-inner {
-  margin: 10px 0;
-}
+
 /* menu fixe de navigation */
 #menunav{background: transparent;bottom: 1.5em;position: fixed;right: 1em;width: 16px;opacity:0.5;}
 #menunav:hover {opacity:5;}
@@ -1325,10 +1139,5 @@ hr.clearer {
 #menunav #up{background: transparent url(img/up.png) no-repeat 50% 50%;}
 #menunav #down{background: transparent url(img/down.png) no-repeat 50% 50%;}
 #menunav #mail{background: transparent url(img/mail.png) no-repeat 50% 50%;}
-#menunav #feed{background: transparent url(img/feed.png) no-repeat 50% 50%;}
+#menunav #feed{background: transparent url(img/rss.png) no-repeat 50% 50%;}
 #menunav #comfeed{background: transparent url(img/comfeed.png) no-repeat 50% 50%;}
-
-.post embed,.post iframe {
-  max-width: 100%;
-  /*height:auto;*/
-}

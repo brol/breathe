@@ -32,3 +32,6 @@ msgstr "Haut de page"
 
 msgid "Bottom"
 msgstr "Bas de page"
+
+msgid "Research"
+msgstr "Rechercher"
