@@ -1,39 +1,50 @@
-= Préambule =
+Préambule
+=========
 
-Les plugins suivants sont requis : [http://aiguebrun.adjaya.info/post/20090202/Telegarger-le-Plugin-Menu-pour-Dotclear2-Download/ menu], [http://lab.dotclear.org/wiki/plugin/listImages/ List Images from entries] et [http://lab.dotclear.org/wiki/plugin/templateWidget/ templateWidget].[[BR]]
+Les plugins suivants sont requis : [menu](http://aiguebrun.adjaya.info/post/20090202/Telegarger-le-Plugin-Menu-pour-Dotclear2-Download/), [List Images from entries](http://lab.dotclear.org/wiki/plugin/listImages/) et [templateWidget](http://lab.dotclear.org/wiki/plugin/templateWidget/).
+
 A noter que les gravatars qui s'affichent dans les commentaires ne nécessitent pas l'installation d'un plugin (code inséré directement dans _public.php).
 
-Dans le contexte billet seul, le service [http://www.addthis.com/ addthis] a été inclus pour faciliter le partage (fichier user_share.html).
+Dans le contexte billet seul, le service [addthis](http://www.addthis.com/) a été inclus pour faciliter le partage (fichier user_share.html).
 
-De plus, il est impératif de renseigner la description des catégories sous peine d'afficher un rectangle bleu si la catégorie ne possède aucune sous-catégorie.[[BR]]
+De plus, il est impératif de renseigner la description des catégories sous peine d'afficher un rectangle bleu si la catégorie ne possède aucune sous-catégorie.
 Non seulement c'est une bonne pratique et fera du bien à votre référencement, mais en plus ça m'arrange ;-)
 
 Enfin, ce thème n'étant pas compatible avec Internet Explorer 6, les utilisateurs de ce truc vieillissant et dépassé verront un horrible bandeau au début du blog les invitant à mettre à jour leur navigateur ou à en installer un autre.
 
-= Le thème =
+Le thème
+--------
 
 '''Titre du blog, un simple lien ou une image cliquable'''[[BR]]
 Le fichier _top.html est prévu pour afficher un simple lien vers votre blog :
 
+```html
 {{{
 <h1><span><a href="{{tpl:BlogURL}}">{{tpl:BlogName encode_html="1"}}</a></span></h1>
 }}}
+```
 
 ou une image liée (/corpoweeeb/img/logo.png) :
 
+```html
 {{{
 <h1><a href="{{tpl:BlogURL}}"><img src="{{tpl:BlogThemeURL}}/img/logo.png" alt="{{tpl:BlogName encode_html="1"}}" /></a></h1>
 }}}
+```
 
 Choisir l'un ou l'autre en commentant/décommentant le code (le code pour l'image est, par défaut, commenté). Les codes de la css seront évidemment à adapter en fonction de la hauteur de votre image (attribut height de #title dans style.css). Concernant la description du blog, si vous affichez une image en titre, il sera nécessaire d'adapter le code css afin de repositionner l'affichage du texte de la description du blog.
 
-'''La page d'accueil'''[[BR]]
+La page d'accueil
+-----------------
 Afin de ne pas répéter le slide présent sur la page d'accueil lors de la navigation dans les éventuelles pages suivantes, le code du slide est entouré de la balise
+```html
 {{{
 <tpl:SysIf current_mode="default">...</tpl:SysIf>
 }}}
+```
 
-'''Le thème propose plusieurs types de navigation'''
+Le thème propose plusieurs types de navigation
+----------------------------------------------
  * un menu reposant sur le plugin menu (menuH.css est calibré pour afficher le niveau 2 des sous-catégories sous forme horizontale ; menuV.css l'est pour plusieurs niveaux de sous-catégories sous forme verticale)
  * un menu fixe situé en bas à droite de la page (inclus dans _footer.html)
  * un dock au-dessus du footer listant sous forme d'images les 9 derniers billets (bug sous ie8, les titres des billets ne s'affichent pas au-dessus des images lors de leur survol)
