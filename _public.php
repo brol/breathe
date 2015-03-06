@@ -14,9 +14,9 @@ if (!defined('DC_RC_PATH')) { return; }
 
 l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/public');
 
-$core->addBehavior('publicHeadContent','breathemenu_publicHeadContent');
+$core->addBehavior('publicHeadContent','breathePublicHeadContent');
 
-function breathemenu_publicHeadContent($core)
+function breathePublicHeadContent($core)
 {
     # appel css menu
 	$style = $core->blog->settings->themes->breathe_menu;
@@ -49,7 +49,7 @@ function breathemenu_publicHeadContent($core)
 	if (!preg_match('/^yesslidenav|noslidenav$/',$style)) {
 		$style = 'yesslidenav';
 	}
-    echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/".$style.".css\" />\n";
+    echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/".$style.".css\" />\n";
 
     # appel css slide1/slide2 ou aucun
     if ($core->blog->settings->themes->breathe_slide!=0)
