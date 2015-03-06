@@ -14,99 +14,74 @@ if (!defined('DC_RC_PATH')) { return; }
 
 l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/public');
 
-# appel css menu
 $core->addBehavior('publicHeadContent','breathemenu_publicHeadContent');
 
 function breathemenu_publicHeadContent($core)
 {
+    # appel css menu
 	$style = $core->blog->settings->themes->breathe_menu;
 	if (!preg_match('/^menuH|menuV|simplemenu$/',$style)) {
 		$style = 'menuV';
 	}
 
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="projection, screen" href="'.$url."/css/menus/".$style.".css\" />\n";
-}
+	$theme_url = $core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme;
+	echo '<link rel="stylesheet" type="text/css" media="projection, screen" href="'.$theme_url."/css/menus/".$style.".css\" />\n";
 
-# appel css couleur
-$core->addBehavior('publicHeadContent','breathecolor_publicHeadContent');
-
-function breathecolor_publicHeadContent($core)
-{
-	$style = $core->blog->settings->themes->breathe_color;
+    # appel css couleur
+    $style = $core->blog->settings->themes->breathe_color;
 	if (!preg_match('/^gray|spring|summer|autumn|winter$/',$style)) {
 		$style = 'gray';
 	}
 
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/colors/".$style.".css\" />\n";
-}
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/colors/".$style.".css\" />\n";
 
-# appel css dock
-$core->addBehavior('publicHeadContent','breathedock_publicHeadContent');
-
-function breathedock_publicHeadContent($core)
-{
+    # appel css dock
 	$style = $core->blog->settings->themes->breathe_dock;
 	if (!preg_match('/^yesdock|nodock$/',$style)) {
 		$style = 'yesdock';
 	}
 
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/dock/".$style.".css\" />\n";
-	echo '<script type="text/javascript" src="'.$url."/js/dock.js\"></script>\n";
-}
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/dock/".$style.".css\" />\n";
+	echo '<script type="text/javascript" src="'.$theme_url."/js/dock.js\"></script>\n";
 
-# appel css slide1
-if ($core->blog->settings->themes->breathe_slide1)
-{
-	$core->addBehavior('publicHeadContent',
-		array('tplBreathe_slide1','publicHeadContent'));
-}
-
-class tplBreathe_slide1
-{
-	public static function publicHeadContent($core)
-	{
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/slide1.css\" />\n";
-	echo '<script type="text/javascript" src="'.$url."/js/s3Slider.js\"></script>\n";
-	}
-}
-
-# appel css slide2
-if ($core->blog->settings->themes->breathe_slide2)
-{
-	$core->addBehavior('publicHeadContent',
-		array('tplBreathe_slide2','publicHeadContent'));
-}
-
-class tplBreathe_slide2
-{
-	public static function publicHeadContent($core)
-	{
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/slide2.css\" />\n";
-	echo '<script type="text/javascript" src="'.$url."/js/jquery.tools.js\"></script>\n";
-	}
-}
-
-# appel css slide on the following pages
-$core->addBehavior('publicHeadContent','breatheslidenav_publicHeadContent');
-
-function breatheslidenav_publicHeadContent($core)
-{
+    # appel css slide on the following pages
 	$style = $core->blog->settings->themes->breathe_slidenav;
 	if (!preg_match('/^yesslidenav|noslidenav$/',$style)) {
 		$style = 'yesslidenav';
 	}
+    echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/".$style.".css\" />\n";
 
-	$url = $core->blog->settings->themes_url.'/'.$core->blog->settings->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$url."/css/slides/".$style.".css\" />\n";
+    # appel css slide1/slide2 ou aucun
+    if ($core->blog->settings->themes->breathe_slide!=0)
+    {
+        echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/".$style.".css\" />\n";
+        if ($core->blog->settings->themes->breathe_slide==1)
+        {
+            echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide1.css\" />\n";
+            echo '<script type="text/javascript" src="'.$theme_url."/js/s3Slider.js\"></script>\n";
+        }
+        else
+        {
+            echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide2.css\" />\n";
+            echo '<script type="text/javascript" src="'.$theme_url."/js/jquery.tools.js\"></script>\n";
+        }
+	}
 }
 
-# exclure billet current
-$core->addBehavior('templateBeforeBlock',array('behaviorsExcludeCurrentPost','templateBeforeBlock'));
+$core->tpl->addBlock('BreatheIf', array('tplBreathe', 'BreatheIf'));
+
+class tplBreathe
+{
+    public static function BreatheIf($attr,$content)
+    {
+        global $core;
+
+        if (!empty($attr['slide']) && ($attr['slide']==$core->blog->settings->themes->breathe_slide))
+        {
+            return $content;
+		}
+    }
+}
 
 class behaviorsExcludeCurrentPost
 {

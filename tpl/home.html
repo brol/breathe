@@ -58,15 +58,22 @@
 <div id="main" role="main">
 
 <tpl:SysIf current_mode="default">
-	{{tpl:include src="_slide1.html"}}
-	{{tpl:include src="_slide2.html"}}
+  <tpl:BreatheIf slide="1">
+    {{tpl:include src="_slide1.html"}}
+  </tpl:BreatheIf>
+  <tpl:BreatheIf slide="2">
+    {{tpl:include src="_slide2.html"}}
+  </tpl:BreatheIf>
 </tpl:SysIf>
 
 <tpl:SysIf current_mode="default-page">
   <div class="slidenav">
-	{{tpl:include src="_slide1.html"}}
-	{{tpl:include src="_slide2.html"}}
-	</div>
+    <tpl:BreatheIf slide="1">
+      {{tpl:include src="_slide1.html"}}
+    </tpl:BreatheIf>
+    <tpl:BreatheIf slide="2">
+      {{tpl:include src="_slide2.html"}}
+    </tpl:BreatheIf>
 </tpl:SysIf>
 
 <tpl:Entries>
