@@ -1,6 +1,6 @@
 <div id="slider" class="slide1">
   <ul id="sliderContent">
-  <tpl:Entries selected="1" lastn="5" ignore_pagination="1" no_context="1">
+  <tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1">
     <li class="sliderImage">
     {{tpl:EntryImages size="o" html_tag="div" link="entry" length="1"}}
     <span class="bottom"><strong><a href="{{tpl:EntryURL}}">{{tpl:EntryTitle encode_html="1"}}</a></strong>
@@ -17,6 +17,7 @@
     </span>
     </li>
   </tpl:Entries>
+  <div class="clear sliderImage"></div>
 </ul>
 
 <script type="text/javascript">

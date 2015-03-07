@@ -36,25 +36,17 @@ function breathePublicHeadContent($core)
 	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/colors/".$style.".css\" />\n";
 
     # appel css dock
-	$style = $core->blog->settings->themes->breathe_dock;
-	if (!preg_match('/^yesdock|nodock$/',$style)) {
-		$style = 'yesdock';
+    if ($core->blog->settings->themes->breathe_dock=='yesdock')
+    {
+        echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/dock/yesdock.css\" />\n";
+	    echo '<script type="text/javascript" src="'.$theme_url."/js/dock.js\"></script>\n";
 	}
-
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/dock/".$style.".css\" />\n";
-	echo '<script type="text/javascript" src="'.$theme_url."/js/dock.js\"></script>\n";
-
-    # appel css slide on the following pages
-	$style = $core->blog->settings->themes->breathe_slidenav;
-	if (!preg_match('/^yesslidenav|noslidenav$/',$style)) {
-		$style = 'yesslidenav';
-	}
-    echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/".$style.".css\" />\n";
 
     # appel css slide1/slide2 ou aucun
+    # appel css slide on the following pages
     if ($core->blog->settings->themes->breathe_slide!=0)
     {
-        echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/".$style.".css\" />\n";
+        echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/yesslidenav.css\" />\n";
         if ($core->blog->settings->themes->breathe_slide==1)
         {
             echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide1.css\" />\n";
@@ -77,6 +69,12 @@ class tplBreathe
         global $core;
 
         if (!empty($attr['slide']) && ($attr['slide']==$core->blog->settings->themes->breathe_slide))
+        {
+            return $content;
+		}
+        if (!empty($attr['dock'])
+            && ((strtolower($attr['dock'])=='yes') || ($attr['dock']==1))
+            && ($core->blog->settings->themes->breathe_dock=='yesdock'))
         {
             return $content;
 		}
