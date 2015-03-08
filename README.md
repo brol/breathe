@@ -9,7 +9,7 @@ Depuis "Personnaliser le thème", il est possible de choisir :
 
 Dans le contexte billet seul, le service [addthis](http://www.addthis.com/) a été inclus pour faciliter le partage (fichier user_share.html) et la navigation se fait dans la catégorie et non sur la totalité du blog.
 
-Enfin, ce thème n'est pas compatible avec Internet Explorer 8 et antérieurs.
+Ce thème n'est pas compatible avec Internet Explorer 8 et antérieurs.
 
 Le thème
 --------
@@ -29,13 +29,10 @@ Choisir l'un ou l'autre en commentant/décommentant le code (le code pour l'imag
 
 Le thème propose plusieurs types de navigation
 ----------------------------------------------
- * un menu reposant sur le plugin menu (menuH.css est calibré pour afficher le niveau 2 des sous-catégories sous forme horizontale ; menuV.css l'est pour plusieurs niveaux de sous-catégories sous forme verticale)
- * un menu fixe situé en bas à droite de la page (inclus dans _footer.html)
- * un dock au-dessus du footer listant sous forme d'images les 9 derniers billets (bug sous ie8, les titres des billets ne s'affichent pas au-dessus des images lors de leur survol)
- * un menu dans le footer ne listant que les catégories de premier niveau et affichant au survol les 80 premiers caractères de leur description
- * deux widgets dans la sidebar nécessitant le plugin templateWidget () :
-- "catfav" affiche les 4 derniers billets d'une catégorie préférée (première image du billet, titre du billet limité aux 30 premiers caractères, le nombre de commentaires si permis et le fil atom de la catégorie). Il faut bien entendu renseigner le nom urlisé de la catégorie et l'url du flux atom dans le fichier catfav.widget.html pour que ça fonctionne.
-- "selection" affiche les 5 derniers billets sélectionnés (première image du billet, titre du billet limité aux 30 premiers caractères et le nombre de commentaires si permis). Fichier selection.widget.html
+* un menu reposant sur le plugin menu (css/menus/menuH.css est calibré pour afficher le niveau 2 des sous-catégories sous forme horizontale ; css/menus/menuV.css l'est pour plusieurs niveaux de sous-catégories sous forme verticale), ou sur le plugin SimpleMenu (pas de niveau, css/menus/simplemenu.css)
+* un menu fixe situé en bas à droite de la page (inclus dans _footer.html)
+* un dock au-dessus du footer listant sous forme d'images les 25 derniers billets (css/dock/dock.css)
+* un menu dans le footer ne listant que les catégories de premier niveau et affichant au survol les 80 premiers caractères de leur description
 
 Les slides
 -----------
@@ -52,70 +49,9 @@ Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous p
 Pour une catégorie précise on mettra à la place de ```<tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1">``` ceci ```<tpl:Entries category="Url-de-votre-categorie" lastn="4" ignore_pagination="1" no_context="1">```.
 Et pour un mot-clé précis, cela ```<tpl:Entries tag="Nom du tag" lastn="4" ignore_pagination="1" no_context="1">```.
 
-Trois types d'affichage des listes de billets
+Deux types d'affichage des listes de billets
 ---------------------------------------------
- * affichage conventionnel : les billets se positionnent les uns au-dessous des autres,
-
-```html
-<div class="post">
-  <div class="post-meta clearfix">
-    <h2 class="post-title left"><a href="{{tpl:EntryURL}}"
-    title="{{tpl:EntryTitle encode_html="1"}}">{{tpl:EntryTitle encode_html="1"}}</a></h2>
-    <p class="post-info right">
-      <span class="infopost"><span>{{tpl:lang By}} {{tpl:EntryAuthorLink}}</span>
-			{{tpl:EntryDate}}</span>
-    </p>
-  </div><!-- End post-meta -->
-
-  <div class="post-box">
-    <div class="post-content">
-
-      <div class="post-intro">
-
-      <!-- # --BEHAVIOR-- publicEntryBeforeContent -->
-     {{tpl:SysBehavior behavior="publicEntryBeforeContent"}}
-
-        <div class="entryimages">
-       {{tpl:EntryImages size="o" html_tag="div" link="none" legend="none" length="1"}}
-        </div>
-
-        <!-- # Entry with an excerpt -->
-        <tpl:EntryIf extended="1">
-        <p>{{tpl:EntryExcerpt encode_html="1" remove_html="1" cut_string="350"}} [...]</p>
-        </tpl:EntryIf>
-
-        <!-- # Entry without excerpt -->
-        <tpl:EntryIf extended="0">
-        <p>{{tpl:EntryContent encode_html="1" remove_html="1" cut_string="350"}} [...]</p>
-        </tpl:EntryIf>
-
-        <!-- # --BEHAVIOR-- publicEntryAfterContent -->
-       {{tpl:SysBehavior behavior="publicEntryAfterContent"}}
-
-			</div><!-- End post-intro -->
-		</div><!-- End post-content -->
-
-		<div class="post-footer clearfix">
-			<div class="continue-reading">
-				<a href="{{tpl:EntryURL}}"
-        title="{{tpl:lang Continue reading}} {{tpl:EntryTitle encode_html="1"}}">{{tpl:lang Continue reading}}</a>
-			</div>
-
-			<div class="category-menu">
-        <tpl:EntryIf has_category="1">
-          <div class="clearfix">
-            <a href="{{tpl:EntryCategoryURL}}" title="{{tpl:CategoryDescription cut_string="80" remove_html="1"}}...">
-            {{tpl:EntryCategory encode_html="1"}}
-            </a>
-          </div>
-        </tpl:EntryIf>
-      </div><!-- End category -->
-    </div><!-- End post-footer -->
-  </div><!-- End post-box -->
-</div><!-- End post -->
-```
-
- * affichage single : les billets sont par couple de deux,
+* affichage single : les billets sont par couple de deux,
 
 ```html
 <div id="p{{tpl:EntryID}}" class="post single {{tpl:EntryIfOdd}} {{tpl:EntryIfFirst}}" lang="{{tpl:EntryLang}}" role="article">
@@ -161,7 +97,7 @@ Trois types d'affichage des listes de billets
 <tpl:EntryIf odd="0"> <div style="clear:left;"> </div> </tpl:EntryIf>
 ```
 
- * affichage small : sous forme de liste très simplifiée (par exemple dans le fichier archive_month.html).
+* affichage small : sous forme de liste très simplifiée (par exemple dans le fichier archive_month.html).
 
 ```html
 <tpl:Entries>
@@ -178,17 +114,18 @@ Trois types d'affichage des listes de billets
 </tpl:Entries>
 ```
 
+Widget
+------
 Le contour de chaque widget peut être restreint à son titre, utiliser la class "noborder" prévue à cet effet.
 
 Footer
 ------
 Sont intégrés divers tpl dans le footer (_footer.html) :
 
-* {{tpl:BlogEditor}} : champ "Nom de l'éditeur du blog", vous pouvez l'englober par du html (exemple : ```<a href="http://votreurl.ext">nom de votre blog</a>```),
-
+* {{tpl:BlogEditor}} : champ "Nom de l'auteur du blog", vous pouvez l'englober par du html (exemple : ```<a href="http://votreurl.ext">nom de votre blog</a>```) à faire depuis l'administration du blog (paramètres du blog) ,
 * {{tpl:BlogCopyrightNotice}} : champ "Note de copyright", idem,
-
-* {{tpl:lang Designed by}} ```<a href="https://github.com/brol/breathe">Pierre Van Glabeke</a>``` : mes références d'auteur du thème, merci de le laisser.
+* ```{{tpl:lang Designed by}} <a href="https://github.com/brol/breathe">Pierre Van Glabeke</a>``` : mes références d'auteur du thème, merci de le laisser.
+* Une zone "A propos" est réservée dans le footer en regard du menu des catégories. Vous êtes libres du titre et du contenu de cette page du moment que son url ```/pages/A-propos```.
 
 === Astuces ===
 
@@ -210,81 +147,6 @@ Dans post.html, remplacer le code ```<div id="navlinks">...</div>``` par celui-c
       </p>
     </div>
   </tpl:MyPostCategoryIf>
-```
-
-* Afficher les billets de toutes les catégories selon l'affichage single et une catégorie particulière selon l'affichage conventionnel
-
-Ajoutez après la balise ```<tpl:Entries>```, la condition excluant la catégorie à afficher selon le mode conventionnel. Vous devez obtenir ceci :
-
-```html
-<!-- # -- liste des billets single -->
-<tpl:Entries>
-  <tpl:CategoryIf url="!Url-de-ma-categorie-particuliere">
-    <div class="post single">
-```
-
-Le ! devant l'URL permet d'inverser le sens du test.
-
-Puis on ferme le bloc par ceci :
-
-```html
-<tpl:EntryIf odd="0"> <div style="clear:left;"> </div> </tpl:EntryIf>
-<!-- # -- End liste des billets single -->
-</tpl:CategoryIf>
-```
-
-A la suite, on ajoute le code pour l'affichage des billets de la catégorie particulière selon le mode d'affichage conventionnel, en prenant soin de renseigner son url. Vous devez obtenir ceci :
-
-```html
-      <!-- # -- liste des billets conventionnel -->
-      <tpl:CategoryIf url="Url-de-ma-categorie-particuliere">
-        <div class="post">
-          <div class="post-meta clearfix">
-          <h2 class="post-title left"><a href="{{tpl:EntryURL}}"
-          title="{{tpl:EntryTitle encode_html="1"}}">{{tpl:EntryTitle encode_html="1"}}</a></h2>
-          <p class="post-info right">
-          <span class="infopost"><span>{{tpl:lang By}} {{tpl:EntryAuthorLink}}</span>
-          {{tpl:EntryDate}}</span>
-          </p>
-          </div><!-- End post-meta -->
-
-          <div class="post-box">
-            <div class="post-content">
-            <div class="post-intro">
-
-            <!-- # --BEHAVIOR-- publicEntryBeforeContent -->
-            {{tpl:SysBehavior behavior="publicEntryBeforeContent"}}
-
-            <div class="entryimages">
-            {{tpl:EntryImages size="o" html_tag="div" link="none" legend="none" length="1"}}
-            </div>
-
-            <!-- # Entry with an excerpt -->
-            <tpl:EntryIf extended="1">
-            <p>{{tpl:EntryExcerpt encode_html="1" remove_html="1" cut_string="350"}} [...]</p>
-            </tpl:EntryIf>
-
-            <!-- # Entry without excerpt -->
-            <tpl:EntryIf extended="0">
-            <p>{{tpl:EntryContent encode_html="1" remove_html="1" cut_string="350"}} [...]</p>
-            </tpl:EntryIf>
-
-            <!-- # --BEHAVIOR-- publicEntryAfterContent -->
-            {{tpl:SysBehavior behavior="publicEntryAfterContent"}}
-
-            </div><!-- End post-intro -->
-            </div><!-- End post-content -->
-
-            <div class="post-footer clearfix">
-              <div class="continue-reading">
-              <a href="{{tpl:EntryURL}}"
-              title="{{tpl:lang Continue reading}} {{tpl:EntryTitle encode_html="1"}}">{{tpl:lang Continue reading}}</a>
-              </div>
-            </div><!-- End post-footer -->
-          </div><!-- End post-box -->
-        </div><!-- End post -->
-      </tpl:CategoryIf>
-      <!-- # -- End liste des billets conventionnel -->
 ```
 
 * Afficher les sous-catégories sous forme de tableau d'images
