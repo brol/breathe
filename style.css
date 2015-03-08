@@ -884,9 +884,7 @@ p.message {
   font-size:1em;
 }
 #sidebar .noborder img {
-  margin:0 auto;
   padding:0;
-  display:block;
   max-width:100%;
 }
 /* widget text */
