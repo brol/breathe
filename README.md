@@ -36,38 +36,29 @@ Le thème propose plusieurs types de navigation
  * un menu dans le footer ne listant que les catégories de premier niveau et affichant au survol les 80 premiers caractères de leur description
  * deux widgets dans la sidebar nécessitant le plugin templateWidget :
 - "catfav" affiche les 4 derniers billets d'une catégorie préférée (première image du billet, titre du billet limité aux 30 premiers caractères, le nombre de commentaires si permis et le fil atom de la catégorie). Il faut bien entendu renseigner le nom urlisé de la catégorie et l'url du flux atom dans le fichier catfav.widget.html pour que ça fonctionne.
-
 - "selection" affiche les 5 derniers billets sélectionnés (première image du billet, titre du billet limité aux 30 premiers caractères et le nombre de commentaires si permis). Fichier selection.widget.html
 
-Deux slides
+Les slides
 -----------
-Par défaut, les billets utilisés sont ceux sélectionnés.
+Les slides permettent d'afficher des images originales de 650px de large x 300px de haut.
+Ils sont positionnés sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite.
+Il n'est pas possible d'afficher simultanément les deux slides dans le blog.
 
- * _slide-2.html fait appel au slide650V.css (images de 650px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite, tabulation sous forme de vignettes, titre du billet associé et les 80 premiers caractères du billet étant positionnés sous les vignettes. Le code, à insérer après la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
-```html
-  <div class="slide clearfix">
-    {{tpl:include src="_slide-2.html"}}
-  </div> <!-- End slide 2 -->
-```
-
- * _slide-4.html fait appel au slideS3.css (images de 650px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite, pas de tabulation, titre du billet associé et les 300 premiers caractères du billet étant positionné sur un fond translucide avec effet de slide. Le code, à insérer après la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
-{{{
-  <div class="slide clearfix">
-    {{tpl:include src="_slide-4.html"}}
-  </div> <!-- End slide 4 -->
-}}}
-
+Trois choix possibles :
+* Pas de slide
+* Slide sans vignette (le titre ainsi que le texte (limité au 300 premiers caractères du billet) s'affiche en bas de l'image sur un fond translucide avec un effet de slide).
+* Slide avec vignettes (le titre ainsi que le texte (limité au 100 premiers caractères du billet) s'affiche en bas de l'image sur un fond translucide. La tabulation est sous forme de vignettes).
 
 Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous pouvez cependant l'utiliser pour afficher les billets d'une catégorie ou d'un tag.
+Pour une catégorie précise on mettra à la place de ```html<tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1">``` ceci ```html<tpl:Entries category="Url-de-votre-categorie" lastn="4" ignore_pagination="1" no_context="1">```.
+Et pour un mot-clé précis, cela ```html<tpl:Entries tag="Nom du tag" lastn="4" ignore_pagination="1" no_context="1">```.
 
-Pour une catégorie précise on mettra à la place de ```html<tpl:Entries selected="1" lastn="4">``` ceci ```html<tpl:Entries category="Url-de-votre-categorie" lastn="4">```
-
-Pour un tag précis on mettra à la place de ```html<tpl:Entries selected="1" lastn="4">``` ceci ```html<tpl:Entries tag="Nom du tag" lastn="4">```
-
-
- * la navigation dans le contexte billet seul se fait dans la catégorie et non sur la totalité du blog.
+La navigation
+-------------
+La navigation dans le contexte billet seul se fait dans la catégorie et non sur la totalité du blog.
 
 Trois types d'affichage des listes de billets
+---------------------------------------------
  * affichage conventionnel : les billets se positionnent les uns au-dessous des autres,
 
 ```html
