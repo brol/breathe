@@ -214,11 +214,7 @@ Dans post.html, remplacer le code ```<div id="navlinks">...</div>``` par celui-c
 
 * Afficher les billets de toutes les catégories selon l'affichage single et une catégorie particulière selon l'affichage conventionnel
 
-<<<<<<< HEAD
 Ajoutez après la balise ```<tpl:Entries>```, la condition excluant la catégorie à afficher selon le mode conventionnel. Vous devez obtenir ceci :
-=======
-Ajoutez après la balise ```html<tpl:Entries>```, la condition excluant la catégorie à afficher selon le mode conventionnel. Vous devez obtenir ceci :
->>>>>>> origin/master
 
 ```html
 <!-- # -- liste des billets single -->
@@ -292,55 +288,8 @@ A la suite, on ajoute le code pour l'affichage des billets de la catégorie part
 ```
 
 * Afficher les sous-catégories sous forme de tableau d'images
-<<<<<<< HEAD
 
 Renommer le fichier category.html en category-normal.html et renommer le fichier category-tab.html en category.html.
-=======
-*
-Dans category.html, remplacer le code :
-
-```html
-<!-- # Subcategories and Entries -->
-<div class="cat-subcat">
-<tpl:CategoryFirstChildren>
-  <tpl:CategoriesHeader>
-  <div id="subcategories">
-    <h3>{{tpl:lang Subcategories}}</h3>
-      <ul>
-  </tpl:CategoriesHeader>
-        <li><a href="{{tpl:CategoryURL}}">{{tpl:CategoryTitle encode_html="1"}}</a></li>
-  <tpl:CategoriesFooter>
-      </ul>
-  </div>
-  </tpl:CategoriesFooter>
-</tpl:CategoryFirstChildren>
-</div><!-- End subcat -->
-```
-
-par ceci :
-
-```html
-<!-- # Subcategories and Entries -->
-<div class="cat-subcat">
-<tpl:CategoryFirstChildren>
-  <tpl:CategoriesHeader>
-  <div id="subcategories" class="clearfix">
-    <h3>{{tpl:lang Subcategories}}</h3>
-  </tpl:CategoriesHeader>
-    <div class="subcat">
-      <h4><a href="{{tpl:CategoryURL}}">{{tpl:CategoryTitle encode_html="1"}}</a></h4>
-      <tpl:Entries ignore_pagination="1" no_content="1" lastn="1" order="asc" >
-      {{tpl:CategoryDescription}}
-    </div>
-      </tpl:Entries>
-  <tpl:CategoriesFooter>
-  </div>
-  </tpl:CategoriesFooter>
-</tpl:CategoryFirstChildren>
-</div><!-- End subcat -->
-<!-- End subcategories -->
-```
->>>>>>> origin/master
 
 Décommenter dans style.css la partie "sous-cat en tableau" (lignes 933 - 962).
 
@@ -349,8 +298,4 @@ Dans la description des sous-catégories, il vous faudra alors coder ainsi :
 ```html
 <p><img title="Title de l'image" alt="Texte alternatif de l'image" src="/chemin/vers/image.ext" /></p>
 <p class="catdesctxt">Description de la sous-catégorie</p>
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> origin/master
