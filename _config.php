@@ -24,16 +24,14 @@ $default_menu = 'menuV';
 $default_color = 'gray';
 $default_dock = 'yesdock';
 $default_slidenav = 'yesslidenav';
-$default_slide1 = false;
-$default_slide2 = false;
+$default_slide = 0;
 
 # Settings
 $my_menu = $core->blog->settings->themes->breathe_menu;
 $my_color = $core->blog->settings->themes->breathe_color;
 $my_dock = $core->blog->settings->themes->breathe_dock;
 $my_slidenav = $core->blog->settings->themes->breathe_slidenav;
-$my_slide1 = $core->blog->settings->themes->breathe_slide1;
-$my_slide2 = $core->blog->settings->themes->breathe_slide2;
+$my_slide = $core->blog->settings->themes->breathe_slide;
 
 # Menu type
 $breathe_menu_combo = array(
@@ -58,27 +56,27 @@ $breathe_dock_combo = array(
 	__('No') => 'nodock'
 );
 
-# slide1
-$html_fileslide1 = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide1.html';
-$html_contentslide1 = is_file($html_fileslide1) ? file_get_contents($html_fileslide1) : '';
+$html_fileslide = array(); $html_contentslide = array();
 
-if (!is_file($html_fileslide1) && !is_writable(dirname($html_fileslide1))) {
-	throw new Exception(
-		sprintf(__('File %s does not exist and directory %s is not writable.'),
-		$css_fileslide1,dirname($html_fileslide1))
-	);
+# slide1
+$html_fileslide[1] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide1.html';
+if (!is_readable(dirname($html_fileslide[1]))) {
+    throw new Exception(
+        sprintf(__('File %s does not exist and directory %s is not readable.'),
+                $html_fileslide[1],dirname($html_fileslide[1]))
+    );
 }
+$html_contentslide[1] = file_get_contents($html_fileslide[1]);
 
 # slide2
-$html_fileslide2 = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide2.html';
-$html_contentslide2 = is_file($html_fileslide2) ? file_get_contents($html_fileslide2) : '';
-
-if (!is_file($html_fileslide2) && !is_writable(dirname($html_fileslide2))) {
+$html_fileslide[2] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide2.html';
+if (!is_readable(dirname($html_fileslide[2]))) {
 	throw new Exception(
 		sprintf(__('File %s does not exist and directory %s is not writable.'),
-		$css_fileslide2,dirname($html_fileslide2))
-	);
+                    $css_fileslide[2],dirname($html_fileslide[2]))
+            );
 }
+$html_contentslide[2] = file_get_contents($html_fileslide[2]);
 
 # slide on the following pages
 $breathe_slidenav_combo = array(
@@ -131,59 +129,31 @@ if (!empty($_POST))
 
 		}
 		$core->blog->settings->themes->put('breathe_dock',$my_dock,'string','Dock display',true);
-
-		# slide1
-		if (!empty($_POST['breathe_slide1']))
+		if (!empty($_POST['breathe_slide']) && ($_POST['breathe_slide']==1 || $_POST['breathe_slide']==2))
 		{
-			$my_slide1 = $_POST['breathe_slide1'];
+			$my_slide = $_POST['breathe_slide'];
 
-
-		} elseif (empty($_POST['breathe_slide1']))
+            if (isset($_POST['slide'][$_POST['breathe_slide']]))
+            {
+                @$fp = fopen($html_fileslide[$_POST['breathe_slide']],'wb');
+                fwrite($fp,$_POST['slide'][$_POST['breathe_slide']]);
+                fclose($fp);
+            }
+		} else
 		{
-			$my_slide1 = $default_slide1;
-
+			$my_slide = $default_slide;
 		}
-		$core->blog->settings->themes->put('breathe_slide1',$my_slide1,'boolean', 'Display slide1',true);
-
-		if (isset($_POST['slide1']))
-		{
-			@$fp = fopen($html_fileslide1,'wb');
-			fwrite($fp,$_POST['slide1']);
-			fclose($fp);
-    }
-
-		# slide2
-		if (!empty($_POST['breathe_slide2']))
-		{
-			$my_slide2 = $_POST['breathe_slide2'];
-
-
-		} elseif (empty($_POST['breathe_slide2']))
-		{
-			$my_slide2 = $default_slide2;
-
-		}
-		$core->blog->settings->themes->put('breathe_slide2',$my_slide2,'boolean', 'Display slide2',true);
+		$core->blog->settings->themes->put('breathe_slide',$my_slide,'integer', 'Display slide',true);
 
 		# slide on the following pages
 		if (!empty($_POST['breathe_slidenav']) && in_array($_POST['breathe_slidenav'],$breathe_slidenav_combo))
 		{
 			$my_slidenav = $_POST['breathe_slidenav'];
-
-
 		} elseif (empty($_POST['breathe_slidenav']))
 		{
 			$my_slidenav = $default_slidenav;
-
 		}
 		$core->blog->settings->themes->put('breathe_slidenav',$my_slidenav,'string','Slidenav display',true);
-
-		if (isset($_POST['slide2']))
-		{
-			@$fp = fopen($html_fileslide2,'wb');
-			fwrite($fp,$_POST['slide2']);
-			fclose($fp);
-    }
 
 		// Blog refresh
 		$core->blog->triggerBlog();
@@ -231,7 +201,13 @@ echo
 '<div class="fieldset"><h4>'.__('Slides').'</h4>'.
 '<p class="info">'.__('The slides can display originals images 650px wide x 300px high.<br />They are positioned under the menu bar, the range of tickets will be below and sidebar to the right.<br />It is not possible to simultaneously view two slides in the blog.').'</p>'.
 '<p>'.
-	form::checkbox('breathe_slide1',1,$my_slide1).
+	form::radio(array('breathe_slide','breathe_slide0'),0,($my_slide==0)).
+	'<label class="classic" for="breathe_slide0">'.
+		__('No slide').
+	'</label>'.
+'</p>'.
+'<p>'.
+	form::radio(array('breathe_slide','breathe_slide1'),1,($my_slide==1)).
 	'<label class="classic" for="breathe_slide1">'.
 		__('Slide without Thumbnails').
 	'</label>'.
@@ -240,10 +216,9 @@ echo
 
 echo
 '<p class="area"><label for="slide1">'.__('Code:').' '.
-form::textarea('slide1',60,20,html::escapeHTML($html_contentslide1)).'</label></p>'.
-
+form::textarea('slide1',60,20,html::escapeHTML($html_contentslide[1])).'</label></p>'.
 '<p>'.
-	form::checkbox('breathe_slide2',1,$my_slide2).
+	form::radio(array('breathe_slide','breathe_slide2'),2,($my_slide==2)).
 	'<label class="classic" for="breathe_slide2">'.
 		__('Slide with Thumbnails').
 	'</label>'.
@@ -252,7 +227,7 @@ form::textarea('slide1',60,20,html::escapeHTML($html_contentslide1)).'</label></
 
 echo
 '<p class="area"><label for="slide2">'.__('Code:').' '.
-form::textarea('slide2',60,20,html::escapeHTML($html_contentslide2)).'</label></p>'.
+form::textarea('slide2',60,20,html::escapeHTML($html_contentslide[2])).'</label></p>'.
 '<p class="info">'.__('By default, the slide is based on the last 4 selected tickets. However, you can use it to display the Notes of a category or tag.<br />For a specific class will be put in place of <code>&lt;tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1"&gt;</code> this <code>&lt;tpl:Entries category="Url-of-the-category" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.<br />And for a specific tag, this <code>&lt;tpl:Entries tag="Name of the tag" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.').'</p>';
 
 # slide on the following pages
