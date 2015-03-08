@@ -1,10 +1,10 @@
-<div id="dockbar">
-	<div class="container">{{tpl:include src="_dock.html"}}</div>
-</div><!-- End #dockbar -->
+<tpl:BreatheIf dock="yes">
+	{{tpl:include src="_dock.html"}}
+</tpl:BreatheIf>
 
-<div id="menunav">
-  {{tpl:include src="_menunav.html"}}
-</div><!-- End #menunav -->
+<div id="navfixed" role="navigation">
+  {{tpl:include src="_navfixed.html"}}
+</div><!-- End #navfixed -->
 
 <div id="footer" role="contentinfo">
 	<div class="container footer-divider clearfix">

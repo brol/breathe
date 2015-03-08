@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{tpl:BlogLanguage}}">
-
 <head>
   <meta charset="UTF-8" />
-
   <meta name="ROBOTS" content="{{tpl:BlogMetaRobots robots="NOINDEX"}}" />
 
   <title>{{tpl:lang Archives}} - {{tpl:ArchiveDate}} - {{tpl:BlogName encode_html="1"}}</title>
@@ -23,7 +21,6 @@
   <link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
   <link rel="up" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
   <link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
-
 
   <tpl:ArchiveNext><link rel="next" href="{{tpl:ArchiveURL}}"
   title="{{tpl:ArchiveDate encode_html="1"}}" /></tpl:ArchiveNext>
@@ -61,8 +58,8 @@
 
   <tpl:Entries>
   <div class="post">
-    <div class="post-meta clearfix">
-      <h2 id="p{{tpl:EntryID}}" class="post-title-small left" lang="{{tpl:EntryLang}}"><a
+    <div id="p{{tpl:EntryID}}" class="post-meta clearfix">
+      <h2 class="post-title-small left" lang="{{tpl:EntryLang}}"><a
       href="{{tpl:EntryURL}}" title="{{tpl:lang Read}} {{tpl:EntryTitle encode_html="1"}}">{{tpl:EntryTitle encode_html="1"}}</a></h2>
       <p class="post-info right">
         <span class="infopost"><span>{{tpl:lang By}} {{tpl:EntryAuthorLink}}</span>

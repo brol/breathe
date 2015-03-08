@@ -48,8 +48,14 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
-msgid "The slides can display originals images 650px wide x 300px high.<br />They are positioned under the menu bar, the range of tickets will be below and sidebar to the right.<br />It is not possible to simultaneously view two slides in the blog."
-msgstr "Les slides permettent d'afficher des images originales de 650px de large x 300px de haut.<br />Ils sont positionnés sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite.<br />Il n'est pas possible d'afficher simultanément les deux slides dans le blog."
+msgid "To display pictures in the dock, you must have installed the plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>."
+msgstr "Pour afficher des images dans le dock, vous devez avoir installé le plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>."
+
+msgid "To display pictures in a slide, you must have installed the plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>.<br />The slides can display originals images 650px wide x 300px high.<br />They are positioned under the menu bar, the range of tickets will be below and sidebar to the right.<br />It is not possible to simultaneously view two slides in the blog."
+msgstr "Pour afficher des images dans un slide, vous devez avoir installé le plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>.<br />Les slides permettent d'afficher des images originales de 650px de large x 300px de haut.<br />Ils sont positionnés sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite.<br />Il n'est pas possible d'afficher simultanément les deux slides dans le blog."
+
+msgid "No slide"
+msgstr "Pas de slide"
 
 msgid "Slide without Thumbnails"
 msgstr "Slide sans vignette"

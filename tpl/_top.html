@@ -5,14 +5,12 @@
 			<!--<h1><a href="{{tpl:BlogURL}}"><img src="{{tpl:BlogThemeURL}}/img/logo.png" alt="{{tpl:BlogName encode_html="1"}}" /></a></h1>-->
 			<p id="blogDescription">{{tpl:BlogDescription}}</p>
 
-			<div id="recherche">
       <form method="get" action="{{tpl:BlogURL}}" id="topsearch">
       <p>
-        <input type="text" value="{{tpl:lang Research}}" onfocus="this.value='';" name="q" id="q" maxlength="255" size="10"/>
-        <input type="submit" value="ok" class="submit"/>
+        <input type="text" value="{{tpl:lang Research}}" onfocus="this.value='';" name="q" id="q" maxlength="255" size="10" />
+        <input type="submit" value="ok" class="submit" />
       </p>
-      </form>
-      </div><!-- End searchform -->
+      </form><!-- End searchform -->
 
 		</div><!-- End title -->
 
@@ -23,18 +21,15 @@
 </div><!-- End header -->
 
 <div id="menu_container">
-	<div class="container">
-    <div id="menu">
-			<div class="menu_container">
-			<tpl:SysIf has_tag="MenuFreshy">{{tpl:MenuFreshy level="0"}}</tpl:SysIf>
-			</div>
-    </div><!-- # -- plugin Menu -->
+  <div id="menu" class="container">
+		<div class="menu_container">
+		{{tpl:MenuFreshy level="0"}}
+		</div>
+  </div><!-- # -- plugin Menu -->
 
-    <div id="navsm">
-			<div class="menu_container">
-      {{tpl:SimpleMenu id="supranav" description="title"}}
-      </div>
-    </div><!-- # -- plugin SimpleMenu -->
-    
-  </div><!-- End container -->
+  <div id="navsm" class="container">
+		<div class="menu_container">
+    {{tpl:SimpleMenu id="supranav" description="title"}}
+    </div>
+  </div><!-- # -- plugin SimpleMenu -->
 </div><!-- End menu_container -->

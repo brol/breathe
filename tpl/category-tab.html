@@ -82,20 +82,24 @@
     <!-- # Subcategories and Entries -->
     <div class="cat-subcat">
     <tpl:CategoryFirstChildren>
-    <tpl:CategoriesHeader>
-      <div id="subcategories">
+      <tpl:CategoriesHeader>
+      <div id="subcategories" class="clearfix">
         <h3>{{tpl:lang Subcategories}}</h3>
-          <ul>
-    </tpl:CategoriesHeader>
-      <li><a href="{{tpl:CategoryURL}}">{{tpl:CategoryTitle encode_html="1"}}</a></li>
-    <tpl:CategoriesFooter>
-          </ul>
+      </tpl:CategoriesHeader>
+        <div class="subcat">
+          <h4><a href="{{tpl:CategoryURL}}">{{tpl:CategoryTitle encode_html="1"}}</a></h4>
+          <tpl:Entries ignore_pagination="1" no_content="1" lastn="1" order="asc">
+          {{tpl:CategoryDescription}}
+        </div>
+          </tpl:Entries>
+      <tpl:CategoriesFooter>
       </div>
-    </tpl:CategoriesFooter>
+      </tpl:CategoriesFooter>
     </tpl:CategoryFirstChildren>
     </div><!-- End cat-subcat -->
+    <!-- End subcategories -->
   </div><!-- post-content cat-info -->
-        
+
   </div><!-- End cat-title -->
 
   <!-- # -- liste des billets single -->

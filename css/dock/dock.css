@@ -13,11 +13,10 @@ END LICENSE BLOCK */
 	clear:both;
 }
 #latest-dock {
-	margin:0;
-  padding:0;
-}
-.dock-back {
+	margin:0 auto;
   padding:20px 0;
+	width:980px;
+  height:auto;
 }
 #dock {
   margin:0 auto;
