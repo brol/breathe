@@ -50,8 +50,8 @@ Trois choix possibles :
 * Slide avec vignettes (le titre ainsi que le texte (limité au 100 premiers caractères du billet) s'affiche en bas de l'image sur un fond translucide. La tabulation est sous forme de vignettes).
 
 Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous pouvez cependant l'utiliser pour afficher les billets d'une catégorie ou d'un tag.
-Pour une catégorie précise on mettra à la place de ```html<tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1">``` ceci ```html<tpl:Entries category="Url-de-votre-categorie" lastn="4" ignore_pagination="1" no_context="1">```.
-Et pour un mot-clé précis, cela ```html<tpl:Entries tag="Nom du tag" lastn="4" ignore_pagination="1" no_context="1">```.
+Pour une catégorie précise on mettra à la place de ```<tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1">``` ceci ```<tpl:Entries category="Url-de-votre-categorie" lastn="4" ignore_pagination="1" no_context="1">```.
+Et pour un mot-clé précis, cela ```<tpl:Entries tag="Nom du tag" lastn="4" ignore_pagination="1" no_context="1">```.
 
 La navigation
 -------------
