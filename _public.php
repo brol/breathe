@@ -46,7 +46,6 @@ function breathePublicHeadContent($core)
     # appel css slide on the following pages
     if ($core->blog->settings->themes->breathe_slide!=0)
     {
-        echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/yesslidenav.css\" />\n";
         if ($core->blog->settings->themes->breathe_slide==1)
         {
             echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide1.css\" />\n";
@@ -61,6 +60,7 @@ function breathePublicHeadContent($core)
 }
 
 $core->tpl->addBlock('BreatheIf', array('tplBreathe', 'BreatheIf'));
+$core->tpl->addBlock('BreatheIfOnFollowingPages', array('tplBreathe', 'BreatheIfOnFollowingPages'));
 
 class tplBreathe
 {
@@ -78,6 +78,17 @@ class tplBreathe
         {
             return $content;
 		}
+    }
+
+    public static function BreatheIfOnFollowingPages($attr,$content)
+    {
+        global $core;
+
+        if ($core->url->type=='default-page' && $core->blog->settings->themes->breathe_slidenav=='yesslidenav')
+        {
+            return $content;
+        }
+
     }
 }
 
