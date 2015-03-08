@@ -2,12 +2,12 @@ Breathe est un thème pour Dotclear2.
 
 Depuis "Personnaliser le thème", il est possible de choisir :
 * le type de menu à afficher (Simplemenu ou Menu (http://forum.dotclear.org/viewtopic.php?id=32705))
-* un environnement coloré prédéfini (prochainement...)
+* un environnement coloré prédéfini (si le thème rencontre un minimum de succès, je m'y attèlerai...)
 * d'afficher ou non un dock au-dessus du footer qui liste les 25 derniers billets ayant une image (le plugin List Images from entries (http://lab.dotclear.org/wiki/plugin/listImages/) est requis)
 * d'afficher en page d'accueil deux types de slides avec ou sans vignettes (le plugin List Images from entries (http://lab.dotclear.org/wiki/plugin/listImages/) est requis)
 * d'afficher ou non le slide sélectionné dans les pages suivantes de la page d'accueil.
 
-Dans le contexte billet seul, le service [addthis](http://www.addthis.com/) a été inclus pour faciliter le partage (fichier user_share.html).
+Dans le contexte billet seul, le service [addthis](http://www.addthis.com/) a été inclus pour faciliter le partage (fichier user_share.html) et la navigation se fait dans la catégorie et non sur la totalité du blog.
 
 Enfin, ce thème n'est pas compatible avec Internet Explorer 8 et antérieurs.
 
@@ -27,14 +27,13 @@ ou une image liée (/breathe/img/logo.png) :
 
 Choisir l'un ou l'autre en commentant/décommentant le code (le code pour l'image est, par défaut, commenté). Les codes de la css seront évidemment à adapter en fonction de la hauteur de votre image (attribut height de #title dans style.css). Concernant la description du blog, si vous affichez une image en titre, il sera nécessaire d'adapter le code css afin de repositionner l'affichage du texte de la description du blog.
 
-
 Le thème propose plusieurs types de navigation
 ----------------------------------------------
  * un menu reposant sur le plugin menu (menuH.css est calibré pour afficher le niveau 2 des sous-catégories sous forme horizontale ; menuV.css l'est pour plusieurs niveaux de sous-catégories sous forme verticale)
  * un menu fixe situé en bas à droite de la page (inclus dans _footer.html)
  * un dock au-dessus du footer listant sous forme d'images les 9 derniers billets (bug sous ie8, les titres des billets ne s'affichent pas au-dessus des images lors de leur survol)
  * un menu dans le footer ne listant que les catégories de premier niveau et affichant au survol les 80 premiers caractères de leur description
- * deux widgets dans la sidebar nécessitant le plugin templateWidget :
+ * deux widgets dans la sidebar nécessitant le plugin templateWidget () :
 - "catfav" affiche les 4 derniers billets d'une catégorie préférée (première image du billet, titre du billet limité aux 30 premiers caractères, le nombre de commentaires si permis et le fil atom de la catégorie). Il faut bien entendu renseigner le nom urlisé de la catégorie et l'url du flux atom dans le fichier catfav.widget.html pour que ça fonctionne.
 - "selection" affiche les 5 derniers billets sélectionnés (première image du billet, titre du billet limité aux 30 premiers caractères et le nombre de commentaires si permis). Fichier selection.widget.html
 
@@ -52,10 +51,6 @@ Trois choix possibles :
 Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous pouvez cependant l'utiliser pour afficher les billets d'une catégorie ou d'un tag.
 Pour une catégorie précise on mettra à la place de ```<tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1">``` ceci ```<tpl:Entries category="Url-de-votre-categorie" lastn="4" ignore_pagination="1" no_context="1">```.
 Et pour un mot-clé précis, cela ```<tpl:Entries tag="Nom du tag" lastn="4" ignore_pagination="1" no_context="1">```.
-
-La navigation
--------------
-La navigation dans le contexte billet seul se fait dans la catégorie et non sur la totalité du blog.
 
 Trois types d'affichage des listes de billets
 ---------------------------------------------
@@ -123,7 +118,6 @@ Trois types d'affichage des listes de billets
  * affichage single : les billets sont par couple de deux,
 
 ```html
-<tpl:Entries>
 <div id="p{{tpl:EntryID}}" class="post single {{tpl:EntryIfOdd}} {{tpl:EntryIfFirst}}" lang="{{tpl:EntryLang}}" role="article">
   <div class="post-meta clearfix">
     <h2 class="post-title left"><a href="{{tpl:EntryURL}}" title="{{tpl:EntryTitle encode_html="1"}}">{{tpl:EntryTitle encode_html="1"}}</a></h2>
@@ -190,11 +184,11 @@ Footer
 ------
 Sont intégrés divers tpl dans le footer (_footer.html) :
 
-* {{tpl:BlogEditor}} : champ "Nom de l'éditeur du blog", vous pouvez l'englober par du html (exemple : ```html<a href="http://votreurl.ext">nom de votre blog</a>```),
+* {{tpl:BlogEditor}} : champ "Nom de l'éditeur du blog", vous pouvez l'englober par du html (exemple : ```<a href="http://votreurl.ext">nom de votre blog</a>```),
 
 * {{tpl:BlogCopyrightNotice}} : champ "Note de copyright", idem,
 
-* {{tpl:lang Designed by}} ```html<a href="https://github.com/brol/breathe">Pierre Van Glabeke</a>``` : mes références d'auteur du thème, merci de le laisser.
+* {{tpl:lang Designed by}} ```<a href="https://github.com/brol/breathe">Pierre Van Glabeke</a>``` : mes références d'auteur du thème, merci de le laisser.
 
 === Astuces ===
 
@@ -202,7 +196,7 @@ Sont intégrés divers tpl dans le footer (_footer.html) :
 
 Installer le plugin myPostCategoryIf (http://plugins.dotaddict.org/dc2/details/myPostCategoryIf).
 
-Dans post.html, remplacer le code ```html<div id="navlinks">...</div>``` par celui-ci en le renseignant avec le nom urlisé de votre catégorie :
+Dans post.html, remplacer le code ```<div id="navlinks">...</div>``` par celui-ci en le renseignant avec le nom urlisé de votre catégorie :
 
 ```html
   <tpl:MyPostCategoryIf url="Votre-categorie">
