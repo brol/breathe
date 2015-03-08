@@ -17,13 +17,10 @@ Le thème
 Titre du blog, un simple lien ou une image cliquable.
 
 Le fichier _top.html est prévu pour afficher un simple lien vers votre blog :
-
 ```html
 <h1><span><a href="{{tpl:BlogURL}}">{{tpl:BlogName encode_html="1"}}</a></span></h1>
 ```
-
 ou une image liée (/breathe/img/logo.png) :
-
 ```html
 <h1><a href="{{tpl:BlogURL}}"><img src="{{tpl:BlogThemeURL}}/img/logo.png" alt="{{tpl:BlogName encode_html="1"}}" /></a></h1>
 ```
@@ -37,42 +34,21 @@ Le thème propose plusieurs types de navigation
  * un menu fixe situé en bas à droite de la page (inclus dans _footer.html)
  * un dock au-dessus du footer listant sous forme d'images les 9 derniers billets (bug sous ie8, les titres des billets ne s'affichent pas au-dessus des images lors de leur survol)
  * un menu dans le footer ne listant que les catégories de premier niveau et affichant au survol les 80 premiers caractères de leur description
- * deux widgets dans la sidebar nécessitant le plugin templateWidget :[[BR]]
-- '''catfav''' affiche les 4 derniers billets d'une catégorie préférée (première image du billet, titre du billet limité aux 30 premiers caractères, le nombre de commentaires si permis et le fil atom de la catégorie). Il faut bien entendu renseigner le nom urlisé de la catégorie et l'url du flux atom dans le fichier catfav.widget.html pour que ça fonctionne.[[BR]]
-- '''selection''' affiche les 5 derniers billets sélectionnés (première image du billet, titre du billet limité aux 30 premiers caractères et le nombre de commentaires si permis). Fichier selection.widget.html
+ * deux widgets dans la sidebar nécessitant le plugin templateWidget :
+- "catfav" affiche les 4 derniers billets d'une catégorie préférée (première image du billet, titre du billet limité aux 30 premiers caractères, le nombre de commentaires si permis et le fil atom de la catégorie). Il faut bien entendu renseigner le nom urlisé de la catégorie et l'url du flux atom dans le fichier catfav.widget.html pour que ça fonctionne.
 
-'''4 types de slides et 5 types d'affichage'''[[BR]]
-Par défaut, les billets utilisés sont ceux sélectionnés.[[BR]]
+- "selection" affiche les 5 derniers billets sélectionnés (première image du billet, titre du billet limité aux 30 premiers caractères et le nombre de commentaires si permis). Fichier selection.widget.html
 
-'''Affichage sans texte'''[[BR]]
- * _slide-1.html fait appel au fichier slide650.css (images de 650px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite, tabulation sous forme de chiffres. Le code, à insérer après la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
-```html
-  <div class="slide clearfix">
-    {{tpl:include src="_slide-1.html"}}
-  </div> <!-- End slide 1 -->
-```
+Deux slides
+-----------
+Par défaut, les billets utilisés sont ceux sélectionnés.
 
- * _slide-1.html fait appel au fichier slide960.css (images de 960px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets et la sidebar seront en-dessous, tabulation sous forme de chiffres. Le code, à insérer avant la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
-```html
-  <div class="slide clearfix">
-    {{tpl:include src="_slide-1.html"}}
-  </div> <!-- End slide 1 -->
-```
-
-'''Affichage avec texte'''[[BR]]
  * _slide-2.html fait appel au slide650V.css (images de 650px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite, tabulation sous forme de vignettes, titre du billet associé et les 80 premiers caractères du billet étant positionnés sous les vignettes. Le code, à insérer après la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
 ```html
   <div class="slide clearfix">
     {{tpl:include src="_slide-2.html"}}
   </div> <!-- End slide 2 -->
 ```
-
- * _slide-3.html fait appel au slide960T.css (images de 960px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets et la sidebar seront en-dessous, tabulation sous forme de chiffres, titre du billet associé et les 300 premiers caractères du billet étant positionnés au-dessus des tabulations à droite de l'image. Le code, à insérer avant la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
-{{{
-  <div class="slide clearfix">
-    {{tpl:include src="_slide-3.html"}}
-  </div> <!-- End slide 3 -->
-}}}
 
  * _slide-4.html fait appel au slideS3.css (images de 650px de large X 300px de haut) et est positionné sous la barre de menu, la liste des billets sera en-dessous et la sidebar à leur droite, pas de tabulation, titre du billet associé et les 300 premiers caractères du billet étant positionné sur un fond translucide avec effet de slide. Le code, à insérer après la la balise {{{<div id="main">}}}, est le suivant :[[BR]]
 {{{
@@ -82,15 +58,16 @@ Par défaut, les billets utilisés sont ceux sélectionnés.[[BR]]
 }}}
 
 
-
 Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous pouvez cependant l'utiliser pour afficher les billets d'une catégorie ou d'un tag.
 
-Pour une catégorie précise on mettra à la place de <tpl:Entries selected="1" lastn="4"> ceci <tpl:Entries category="Url-de-votre-categorie" lastn="4">[[BR]]
+Pour une catégorie précise on mettra à la place de <tpl:Entries selected="1" lastn="4"> ceci <tpl:Entries category="Url-de-votre-categorie" lastn="4">
+
 Pour un tag précis on mettra à la place de <tpl:Entries selected="1" lastn="4"> ceci <tpl:Entries tag="Nom du tag" lastn="4">
 
 '''Contraintes''' : vous ne pouvez pas panacher plusieurs types de slides dans un même blog.[[BR]]
 Vous ne pouvez pas mettre plus d'un slide par fichier html dans le même contexte.[[BR]]
-Par contre, vous pouvez effectuer une sélection sur les catégories afin d'afficher un slide 650 sur la catégorie dont l'url est ''Machin'' et un autre slide 650 dont l'url est ''Truc''. Il vous faudra bien entendu dupliquer et renommer le fichier _slide-1.html.[[BR]]
+Par contre, vous pouvez effectuer une sélection sur les catégories afin d'afficher un slide 650 sur la catégorie dont l'url est ''Machin'' et un autre slide 650 dont l'url est ''Truc''. Il vous faudra bien entendu dupliquer et renommer le fichier _slide-1.html.
+
 Exemple avec le fichier category.html :
 
 ```html
@@ -242,20 +219,19 @@ Footer
 
 Sont intégrés divers tpl dans le footer (_footer.html) :
 
-* {{tpl:BlogEditor}} : champ Nom de l'éditeur du blog, vous pouvez l'englober par du html (exemple : <a href="http://votreurl.ext">nom de votre blog</a>),[[BR]]
-* {{tpl:BlogCopyrightNotice}} : champ Note de copyright, idem,[[BR]]
-* {{tpl:lang Designed by}} <a href="http://www.weeeb.fr">Weeeb</a> : mes références d'auteur du thème, merci de le laisser,[[BR]]
+* {{tpl:BlogEditor}} : champ Nom de l'éditeur du blog, vous pouvez l'englober par du html (exemple : <a href="http://votreurl.ext">nom de votre blog</a>),
+
+* {{tpl:BlogCopyrightNotice}} : champ Note de copyright, idem,
+
+* {{tpl:lang Designed by}} <a href="http://www.weeeb.fr">Weeeb</a> : mes références d'auteur du thème, merci de le laisser,
+
 * <a href="/pages/Mentions-legales">{{tpl:lang Legal mentions}}</a> : lien vers une page de Mentions légales que vous aurez à créer, ou alors vous supprimez le lien...
 
 === Astuces ===
 
- * '''Positionnement du moteur de recherche dans la barre de menu'''
-Dans post.html, déplacer le
-{{{<div id="recherche">...</div>}}} après le {{{<tpl:SysIf has_tag="MenuFreshy">{{tpl:MenuFreshy level="0"}}</tpl:SysIf>}}}.[[BR]]
-Dans style.css, modifier les styles de #recherche et #search comme indiqué dans le fichier.
-
  * '''Réduire la navigation dans le contexte billet seul à une catégorie particulière'''
-Installer le plugin [http://lab.dotclear.org/wiki/plugin/myPostCategoryIf/ myPostCategoryIf].[[BR]]
+Installer le plugin [http://lab.dotclear.org/wiki/plugin/myPostCategoryIf/ myPostCategoryIf].
+
 Dans post.html, remplacer le code {{{<div id="navlinks">...</div>}}} par celui-ci en le renseignant avec le nom urlisé de votre catégorie :
 
 ```html
