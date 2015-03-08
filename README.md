@@ -60,29 +60,9 @@ Par défaut, les billets utilisés sont ceux sélectionnés.
 
 Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés. Vous pouvez cependant l'utiliser pour afficher les billets d'une catégorie ou d'un tag.
 
-Pour une catégorie précise on mettra à la place de <tpl:Entries selected="1" lastn="4"> ceci <tpl:Entries category="Url-de-votre-categorie" lastn="4">
+Pour une catégorie précise on mettra à la place de ```html<tpl:Entries selected="1" lastn="4">``` ceci ```html<tpl:Entries category="Url-de-votre-categorie" lastn="4">```
 
-Pour un tag précis on mettra à la place de <tpl:Entries selected="1" lastn="4"> ceci <tpl:Entries tag="Nom du tag" lastn="4">
-
-'''Contraintes''' : vous ne pouvez pas panacher plusieurs types de slides dans un même blog.[[BR]]
-Vous ne pouvez pas mettre plus d'un slide par fichier html dans le même contexte.[[BR]]
-Par contre, vous pouvez effectuer une sélection sur les catégories afin d'afficher un slide 650 sur la catégorie dont l'url est ''Machin'' et un autre slide 650 dont l'url est ''Truc''. Il vous faudra bien entendu dupliquer et renommer le fichier _slide-1.html.
-
-Exemple avec le fichier category.html :
-
-```html
-  <tpl:CategoryIf url="Machin">
-  <div class="slide clearfix">
-  {{tpl:include src="_slide-1.html"}}
-  </div><!-- End slide machin -->
-  </tpl:CategoryIf>
-
-  <tpl:CategoryIf url="Truc">
-  <div class="slide clearfix">
-  {{tpl:include src="_slide-2.html"}}
-  </div><!-- End slide truc-->
-  </tpl:CategoryIf>
-```
+Pour un tag précis on mettra à la place de ```html<tpl:Entries selected="1" lastn="4">``` ceci ```html<tpl:Entries tag="Nom du tag" lastn="4">```
 
 
  * la navigation dans le contexte billet seul se fait dans la catégorie et non sur la totalité du blog.
@@ -216,23 +196,22 @@ Trois types d'affichage des listes de billets
 Le contour de chaque widget peut être restreint à son titre, utiliser la class "noborder" prévue à cet effet.
 
 Footer
-
+------
 Sont intégrés divers tpl dans le footer (_footer.html) :
 
-* {{tpl:BlogEditor}} : champ Nom de l'éditeur du blog, vous pouvez l'englober par du html (exemple : <a href="http://votreurl.ext">nom de votre blog</a>),
+* {{tpl:BlogEditor}} : champ "Nom de l'éditeur du blog", vous pouvez l'englober par du html (exemple : ```html<a href="http://votreurl.ext">nom de votre blog</a>```),
 
-* {{tpl:BlogCopyrightNotice}} : champ Note de copyright, idem,
+* {{tpl:BlogCopyrightNotice}} : champ "Note de copyright", idem,
 
-* {{tpl:lang Designed by}} <a href="http://www.weeeb.fr">Weeeb</a> : mes références d'auteur du thème, merci de le laisser,
-
-* <a href="/pages/Mentions-legales">{{tpl:lang Legal mentions}}</a> : lien vers une page de Mentions légales que vous aurez à créer, ou alors vous supprimez le lien...
+* {{tpl:lang Designed by}} ```html<a href="https://github.com/brol/breathe">Pierre Van Glabeke</a>``` : mes références d'auteur du thème, merci de le laisser.
 
 === Astuces ===
 
- * '''Réduire la navigation dans le contexte billet seul à une catégorie particulière'''
-Installer le plugin [http://lab.dotclear.org/wiki/plugin/myPostCategoryIf/ myPostCategoryIf].
+* Réduire la navigation dans le contexte billet seul à une catégorie particulière
 
-Dans post.html, remplacer le code {{{<div id="navlinks">...</div>}}} par celui-ci en le renseignant avec le nom urlisé de votre catégorie :
+Installer le plugin myPostCategoryIf (http://plugins.dotaddict.org/dc2/details/myPostCategoryIf).
+
+Dans post.html, remplacer le code ```html<div id="navlinks">...</div>``` par celui-ci en le renseignant avec le nom urlisé de votre catégorie :
 
 ```html
   <tpl:MyPostCategoryIf url="Votre-categorie">
@@ -248,8 +227,9 @@ Dans post.html, remplacer le code {{{<div id="navlinks">...</div>}}} par celui-c
   </tpl:MyPostCategoryIf>
 ```
 
- * '''Afficher les billets de toutes les catégories selon l'affichage single et une catégorie particulière selon l'affichage conventionnel'''
-Ajoutez après la balise <tpl:Entries>, la condition excluant la catégorie à afficher selon le mode conventionnel. Vous devez obtenir ceci :
+* Afficher les billets de toutes les catégories selon l'affichage single et une catégorie particulière selon l'affichage conventionnel
+
+Ajoutez après la balise ```html<tpl:Entries>```, la condition excluant la catégorie à afficher selon le mode conventionnel. Vous devez obtenir ceci :
 
 ```html
 <!-- # -- liste des billets single -->
@@ -322,7 +302,8 @@ A la suite, on ajoute le code pour l'affichage des billets de la catégorie part
       <!-- # -- End liste des billets conventionnel -->
 ```
 
- * '''Afficher les sous-catégories sous forme de tableau d'images'''
+* Afficher les sous-catégories sous forme de tableau d'images
+*
 Dans category.html, remplacer le code :
 
 ```html
