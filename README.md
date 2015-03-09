@@ -125,10 +125,10 @@ Sont intégrés divers tpl dans le footer (_footer.html) :
 * {{tpl:BlogEditor}} : champ "Nom de l'auteur du blog", vous pouvez l'englober par du html (exemple : ```<a href="http://votreurl.ext">nom de votre blog</a>```) à faire depuis l'administration du blog (paramètres du blog) ,
 * {{tpl:BlogCopyrightNotice}} : champ "Note de copyright", idem,
 * ```{{tpl:lang Designed by}} <a href="https://github.com/brol/breathe">Pierre Van Glabeke</a>``` : mes références d'auteur du thème, merci de le laisser.
-* Une zone "A propos" est réservée dans le footer en regard du menu des catégories. Vous êtes libres du titre et du contenu de cette page du moment que son url ```/pages/A-propos```.
+* Une zone "A propos" est réservée dans le footer en regard du menu des catégories. Vous êtes libres du titre et du contenu de cette page du moment que son url est ```/pages/A-propos```.
 
-=== Astuces ===
-
+Astuces
+-------
 * Réduire la navigation dans le contexte billet seul à une catégorie particulière
 
 Installer le plugin myPostCategoryIf (http://plugins.dotaddict.org/dc2/details/myPostCategoryIf).
