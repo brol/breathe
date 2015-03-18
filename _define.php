@@ -19,6 +19,7 @@ $this->registerModule(
 	/* Author */			"Pierre Van Glabeke",
 	/* Version */			'0.2',
 	array(
-		'type'		=>		'theme'
+		'type'	 =>	'theme',
+		'tplset' => 'mustek'
 	)
 );
