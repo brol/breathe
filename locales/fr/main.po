@@ -10,8 +10,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 
-msgid "File %s does not exist and directory %s is not readable."
-msgstr "Le fichier %s n'existe pas et le répertoire %s n'est pas accessible en lecture."
+msgid "File %s does not exist and directory %s is not writable."
+msgstr "Le fichier %s n'existe pas et le répertoire %s n'est pas accessible en écriture."
 
 msgid "Personalizations"
 msgstr "Personnalisations"
@@ -75,4 +75,3 @@ msgstr "Par défaut, le slide s'appuie sur les 4 derniers billets sélectionnés
 
 msgid "Display on the following pages:"
 msgstr "Afficher sur les pages suivantes :"
-
