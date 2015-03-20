@@ -60,9 +60,9 @@ $html_fileslide = array(); $html_contentslide = array();
 
 # slide1
 $html_fileslide[1] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide1.html';
-if (!is_readable(dirname($html_fileslide[1]))) {
+if (!is_writable(dirname($html_fileslide[1]))) {
     throw new Exception(
-        sprintf(__('File %s does not exist and directory %s is not readable.'),
+        sprintf(__('File %s does not exist and directory %s is not writable.'),
                 $html_fileslide[1],dirname($html_fileslide[1]))
     );
 }
@@ -70,7 +70,7 @@ $html_contentslide[1] = file_get_contents($html_fileslide[1]);
 
 # slide2
 $html_fileslide[2] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide2.html';
-if (!is_readable(dirname($html_fileslide[2]))) {
+if (!is_writable(dirname($html_fileslide[2]))) {
 	throw new Exception(
 		sprintf(__('File %s does not exist and directory %s is not writable.'),
                     $css_fileslide[2],dirname($html_fileslide[2]))
@@ -129,16 +129,17 @@ if (!empty($_POST))
 
 		}
 		$core->blog->settings->themes->put('breathe_dock',$my_dock,'string','Dock display',true);
-		
+
 		# Slide scheme
 		if (!empty($_POST['breathe_slide']) && ($_POST['breathe_slide']==1 || $_POST['breathe_slide']==2))
 		{
 			$my_slide = $_POST['breathe_slide'];
 
-            if (isset($_POST['slide'][$_POST['breathe_slide']]))
+            if (isset($_POST['slide'.$_POST['breathe_slide']]))
             {
+                $html_contentslide[$_POST['breathe_slide']] = $_POST['slide'.$_POST['breathe_slide']];
                 @$fp = fopen($html_fileslide[$_POST['breathe_slide']],'wb');
-                fwrite($fp,$_POST['slide'][$_POST['breathe_slide']]);
+                fwrite($fp,$html_contentslide[$_POST['breathe_slide']]);
                 fclose($fp);
             }
 		} else

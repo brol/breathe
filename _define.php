@@ -17,7 +17,7 @@ $this->registerModule(
 	/* Name */			"Breathe",
 	/* Description*/		"Thème avec slides, menus et habillages divers",
 	/* Author */			"Pierre Van Glabeke",
-	/* Version */			'0.2',
+	/* Version */			'0.3',
 	array(
 		'type'	 =>	'theme',
 		'tplset' => 'mustek'
