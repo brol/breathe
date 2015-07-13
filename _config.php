@@ -50,7 +50,7 @@ $breathe_color_combo = array(
 //	__('Winter') => 'winter'
 );
 
-# dock
+# Dock
 $breathe_dock_combo = array(
 	__('Yes') => 'yesdock',
 	__('No') => 'nodock'
@@ -58,7 +58,7 @@ $breathe_dock_combo = array(
 
 $html_fileslide = array(); $html_contentslide = array();
 
-# slide1
+# Slide1
 $html_fileslide[1] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide1.html';
 if (!is_writable(dirname($html_fileslide[1]))) {
     throw new Exception(
@@ -68,7 +68,7 @@ if (!is_writable(dirname($html_fileslide[1]))) {
 }
 $html_contentslide[1] = file_get_contents($html_fileslide[1]);
 
-# slide2
+# Slide2
 $html_fileslide[2] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide2.html';
 if (!is_writable(dirname($html_fileslide[2]))) {
 	throw new Exception(
@@ -78,7 +78,7 @@ if (!is_writable(dirname($html_fileslide[2]))) {
 }
 $html_contentslide[2] = file_get_contents($html_fileslide[2]);
 
-# slide on the following pages
+# Slide on the following pages
 $breathe_slidenav_combo = array(
 	__('Yes') => 'yesslidenav',
 	__('No') => 'noslidenav'
@@ -200,7 +200,7 @@ form::combo('breathe_dock',$breathe_dock_combo,$my_dock).
 '<p class="info">'.__('To display pictures in the dock, you must have installed the plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>.').'</p>'.
 '</div>';
 
-# slides
+# Slides
 echo
 '<div class="fieldset"><h4>'.__('Slides').'</h4>'.
 '<p class="info">'.__('To display pictures in a slide, you must have installed the plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>.<br />The slides can display originals images 650px wide x 300px high.<br />They are positioned under the menu bar, the range of tickets will be below and sidebar to the right.<br />It is not possible to simultaneously view two slides in the blog.').'</p>'.
@@ -234,7 +234,7 @@ echo
 form::textarea('slide2',60,20,html::escapeHTML($html_contentslide[2])).'</label></p>'.
 '<p class="info">'.__('By default, the slide is based on the last 4 selected tickets. However, you can use it to display the Notes of a category or tag.<br />For a specific class will be put in place of <code>&lt;tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1"&gt;</code> this <code>&lt;tpl:Entries category="Url-of-the-category" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.<br />And for a specific tag, this <code>&lt;tpl:Entries tag="Name of the tag" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.').'</p>';
 
-# slide on the following pages
+# Slide on the following pages
 echo
 '<p class="field"><label>'.__('Display on the following pages:').'</label>'.
 form::combo('breathe_slidenav',$breathe_slidenav_combo,$my_slidenav).

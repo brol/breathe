@@ -9,7 +9,7 @@ Licensed under the GPL version 2.0 license.
 A copy of this license is available in LICENSE file or at
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 END LICENSE BLOCK */
-	/* date 09-03-2015 */
+/* date 09-03-2015 */
 
 if (!defined('DC_RC_PATH')) { return; }
 
