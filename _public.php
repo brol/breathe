@@ -25,7 +25,7 @@ function breathePublicHeadContent($core)
 	}
 
 	$theme_url = $core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme;
-	echo '<link rel="stylesheet" type="text/css" media="projection, screen" href="'.$theme_url."/css/menus/".$style.".css\" />\n";
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/menus/".$style.".css\" />\n";
 
     # appel css couleur
     $style = $core->blog->settings->themes->breathe_color;
