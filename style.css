@@ -1,7 +1,7 @@
 /* BEGIN LICENSE BLOCK
 This file is part of breathe, a theme for Dotclear.
 
-Copyright (c) 2013 - 2015
+Copyright (c) 2013 - 2016
 Pierre Van Glabeke https://github.com/brol/breathe
 
 Licensed under the Creative Commons version 4.0 license.
@@ -112,16 +112,16 @@ html[xmlns] .clearfix { display: block; }
 }
 #topsearch p .submit {
   border : none;
-  padding : 0;
   background : url('img/icon-search.png') center center no-repeat transparent;
   width : 30px;
+  cursor : pointer;
+  text-indent : -9999px;
   height : 26px;
-  float : right;
+  /*float : right;
   text-transform : uppercase;
   font-family : inherit;
   font-size : 1em;
-  cursor : pointer;
-  text-indent : -9999px;
+  padding : 0;*/
 }
 #prelude {
   position : absolute;
@@ -238,6 +238,7 @@ html[xmlns] #wrapper {
   clear : both;
   padding : 0;
 }
+#breadcrumb {margin:0 0 10px;padding:0 0 0 5px;}
 
 /* billets un par un */
 .post {
@@ -1171,3 +1172,5 @@ hr.clearer {
 #navfixed #mail{background: transparent url(img/mail.png) no-repeat 50% 50%;}
 #navfixed #feed{background: transparent url(img/rss.png) no-repeat 50% 50%;}
 #navfixed #comfeed{background: transparent url(img/comfeed.png) no-repeat 50% 50%;}
+
+.readmore-ellipsis {display:none;}

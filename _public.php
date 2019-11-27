@@ -2,7 +2,7 @@
 /* BEGIN LICENSE BLOCK
 This file is part of breathe, a theme for Dotclear.
 
-Copyright (c) 2013 - 2015
+Copyright (c) 2013 - 2016
 Pierre Van Glabeke https://github.com/brol/breathe
 
 Licensed under the Creative Commons version 4.0 license.
@@ -25,7 +25,7 @@ function breathePublicHeadContent($core)
 	}
 
 	$theme_url = $core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme;
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/menus/".$style.".css\" />\n";
+	echo '<link rel="stylesheet" type="text/css" media="projection, screen" href="'.$theme_url."/css/menus/".$style.".css\" />\n";
 
     # appel css couleur
     $style = $core->blog->settings->themes->breathe_color;
@@ -49,11 +49,12 @@ function breathePublicHeadContent($core)
         if ($core->blog->settings->themes->breathe_slide==1)
         {
             echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide1.css\" />\n";
-            echo '<script type="text/javascript" src="'.$theme_url."/js/s3Slider.js\"></script>\n";
+           // echo '<script type="text/javascript" src="'.$theme_url."/js/s3Slider.js\"></script>\n";
         }
         else
         {
             echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide2.css\" />\n";
+          //  echo '<script type="text/javascript" src="'.$theme_url."/js/1.11.3/jquery.js\"></script>\n";
             echo '<script type="text/javascript" src="'.$theme_url."/js/jquery.tools.js\"></script>\n";
         }
 	}

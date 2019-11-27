@@ -9,10 +9,6 @@ A copy of this license is available in LICENSE file or at
 http://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr
 END LICENSE BLOCK */
 #navsm {display:none;}
-
-#main, #sidebar {
-  margin-top:20px;
-}
 #menu_container {
 	position:relative;
 	z-index:85;

@@ -1,7 +1,7 @@
 /* BEGIN LICENSE BLOCK
 This file is part of breathe, a theme for Dotclear.
 
-Copyright (c) 2013 - 2015
+Copyright (c) 2013 - 2016
 Pierre Van Glabeke https://github.com/brol/breathe
 
 Licensed under the Creative Commons version 4.0 license.
@@ -188,3 +188,15 @@ html>body #menu {
 #menu ul li:hover.current_page_item li a {
 	text-decoration:none;
 }
+.caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px dashed;
+  display: inline-block;
+  height: 0;
+  margin-left: 4px;
+  vertical-align: middle;
+  width: 0;
+}
+
+#menu ul ul li .caret, #sidebar .w-block-menu .caret {display:none;}

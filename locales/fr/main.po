@@ -19,8 +19,8 @@ msgstr "Personnalisations"
 msgid "Menu to display:"
 msgstr "Menu à afficher :"
 
-msgid "Plugins menu allowed: <a href="http://forum.dotclear.org/viewtopic.php?id=32705">Adjaya Menu</a> plugin (horizontal and vertical), or SimpleMenu."
-msgstr "Plugins menu acceptés : plugin <a href="http://forum.dotclear.org/viewtopic.php?id=32705">Menu d'Adjaya</a> (horizontal et vertical), ou SimpleMenu."
+msgid "Plugins menu allowed: <a href="http://plugins.dotaddict.org/dc2/details/menu">Menu</a> plugin (horizontal and vertical), or SimpleMenu."
+msgstr "Plugins menu acceptés : plugin <a href="http://plugins.dotaddict.org/dc2/details/menu">Menu</a> (horizontal et vertical), ou SimpleMenu."
 
 msgid "Colors"
 msgstr "Couleurs"
