@@ -28,9 +28,8 @@
   <script type="application/json" id="dc_post_remember_str-data">
     {"post_remember_str": "{{tpl:lang Remember me on this blog}}"}
   </script>
-  <script type="text/javascript" src="{{tpl:BlogQmarkURL}}pf=util.js"></script>
-  <script type="text/javascript" src="{{tpl:BlogQmarkURL}}pf=post.js"></script>
-  <script type="text/javascript">
+  <script src="{{tpl:BlogQmarkURL}}pf=post.js"></script>
+  <script>
   $(document).ready(function() {
   if ($('#pr').is(':visible')) {jQuery('.hidecomment-form').show()} else {$(".hidecomment-form").hide()};
   $("#comment-form h3").click(function() {
@@ -148,7 +147,7 @@
 	      <div class="commentlist">
 		<tpl:Comments>
 		  <div class="comment {{tpl:CommentIfMe return="me"}} {{tpl:CommentIfOdd}} {{tpl:CommentIfFirst}}" id="c{{tpl:CommentID}}">
-			{{tpl:gravatar class="avatar" size="40" alt="Gravatar de %s"}} <h4>{{tpl:CommentContent cut_string="50" remove_html="1"}}</h4>
+			<img src="http://www.gravatar.com/avatar/{{tpl:CommentAuthorMailMD5}}?s=40" class="avatar" alt="{{tpl:CommentAuthor}}" /> <h4>{{tpl:CommentContent cut_string="50" remove_html="1"}}</h4>
 			<span class="author">{{tpl:CommentAuthorLink}}</span> | {{tpl:CommentDate}} | {{tpl:CommentTime}}
 			<div class="comment_content">
       <!-- # --BEHAVIOR-- publicCommentBeforeContent -->

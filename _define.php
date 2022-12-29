@@ -9,18 +9,16 @@ Licensed under the GPL version 2.0 license.
 A copy of this license is available in LICENSE file or at
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 END LICENSE BLOCK */
-	/* date 12-03-2016 */
-
 if (!defined('DC_RC_PATH')) { return; }
 
 $this->registerModule(
-	/* Name */			"Breathe",
-	/* Description*/		"Thème avec slides, menus et habillages divers",
-	/* Author */			"Pierre Van Glabeke",
-	/* Version */			'0.5',
-	array(
-		'type'	 =>	'theme',
-		'tplset' => 'mustek',
-		'dc_min' => '2.15'
-	)
+    'Breathe',
+    'Thème avec slides, menus et habillages divers',
+    'Pierre Van Glabeke',
+    '0.6',
+    [
+        'requires' => [['core', '2.24']],
+        'type'     => 'theme',
+        'tplset'   => 'mustek',
+    ]
 );

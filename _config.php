@@ -12,12 +12,10 @@ END LICENSE BLOCK */
 
 if (!defined('DC_CONTEXT_ADMIN')) { return; }
 
-global $core;
-
 //PARAMS
 
 # Translations
-l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/main');
+l10n::set(__DIR__ . '/locales/' . dcCore::app()->lang . '/main');
 
 # Default values
 $default_menu = 'menuV';
@@ -27,11 +25,11 @@ $default_slidenav = 'yesslidenav';
 $default_slide = 0;
 
 # Settings
-$my_menu = $core->blog->settings->themes->breathe_menu;
-$my_color = $core->blog->settings->themes->breathe_color;
-$my_dock = $core->blog->settings->themes->breathe_dock;
-$my_slidenav = $core->blog->settings->themes->breathe_slidenav;
-$my_slide = $core->blog->settings->themes->breathe_slide;
+$my_menu = dcCore::app()->blog->settings->themes->breathe_menu;
+$my_color = dcCore::app()->blog->settings->themes->breathe_color;
+$my_dock = dcCore::app()->blog->settings->themes->breathe_dock;
+$my_slidenav = dcCore::app()->blog->settings->themes->breathe_slidenav;
+$my_slide = dcCore::app()->blog->settings->themes->breathe_slide;
 
 # Menu type
 $breathe_menu_combo = array(
@@ -50,7 +48,7 @@ $breathe_color_combo = array(
 //	__('Winter') => 'winter'
 );
 
-# Dock
+# dock
 $breathe_dock_combo = array(
 	__('Yes') => 'yesdock',
 	__('No') => 'nodock'
@@ -58,8 +56,8 @@ $breathe_dock_combo = array(
 
 $html_fileslide = array(); $html_contentslide = array();
 
-# Slide1
-$html_fileslide[1] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide1.html';
+# slide1
+$html_fileslide[1] = path::real(dcCore::app()->blog->themes_path).'/'.dcCore::app()->blog->settings->system->theme.'/tpl/_slide1.html';
 if (!is_writable(dirname($html_fileslide[1]))) {
     throw new Exception(
         sprintf(__('File %s does not exist and directory %s is not writable.'),
@@ -68,8 +66,8 @@ if (!is_writable(dirname($html_fileslide[1]))) {
 }
 $html_contentslide[1] = file_get_contents($html_fileslide[1]);
 
-# Slide2
-$html_fileslide[2] = path::real($core->blog->themes_path).'/'.$core->blog->settings->system->theme.'/tpl/_slide2.html';
+# slide2
+$html_fileslide[2] = path::real(dcCore::app()->blog->themes_path).'/'.dcCore::app()->blog->settings->system->theme.'/tpl/_slide2.html';
 if (!is_writable(dirname($html_fileslide[2]))) {
 	throw new Exception(
 		sprintf(__('File %s does not exist and directory %s is not writable.'),
@@ -78,7 +76,7 @@ if (!is_writable(dirname($html_fileslide[2]))) {
 }
 $html_contentslide[2] = file_get_contents($html_fileslide[2]);
 
-# Slide on the following pages
+# slide on the following pages
 $breathe_slidenav_combo = array(
 	__('Yes') => 'yesslidenav',
 	__('No') => 'noslidenav'
@@ -90,7 +88,7 @@ if (!empty($_POST))
 {
 	try
 	{
-		$core->blog->settings->addNamespace('themes');
+		dcCore::app()->blog->settings->addNamespace('themes');
 
 		# Menu type
 		if (!empty($_POST['breathe_menu']) && in_array($_POST['breathe_menu'],$breathe_menu_combo))
@@ -102,7 +100,7 @@ if (!empty($_POST))
 			$my_menu = $default_menu;
 
 		}
-		$core->blog->settings->themes->put('breathe_menu',$my_menu,'string','Menu to display',true);
+		dcCore::app()->blog->settings->themes->put('breathe_menu',$my_menu,'string','Menu to display',true);
 
 		# Color scheme
 		if (!empty($_POST['breathe_color']) && in_array($_POST['breathe_color'],$breathe_color_combo))
@@ -115,7 +113,7 @@ if (!empty($_POST))
 			$my_color = $default_color;
 
 		}
-		$core->blog->settings->themes->put('breathe_color',$my_color,'string','Color display',true);
+		dcCore::app()->blog->settings->themes->put('breathe_color',$my_color,'string','Color display',true);
 
 		# Dock scheme
 		if (!empty($_POST['breathe_dock']) && in_array($_POST['breathe_dock'],$breathe_dock_combo))
@@ -128,7 +126,7 @@ if (!empty($_POST))
 			$my_dock = $default_dock;
 
 		}
-		$core->blog->settings->themes->put('breathe_dock',$my_dock,'string','Dock display',true);
+		dcCore::app()->blog->settings->themes->put('breathe_dock',$my_dock,'string','Dock display',true);
 
 		# Slide scheme
 		if (!empty($_POST['breathe_slide']) && ($_POST['breathe_slide']==1 || $_POST['breathe_slide']==2))
@@ -146,7 +144,7 @@ if (!empty($_POST))
 		{
 			$my_slide = $default_slide;
 		}
-		$core->blog->settings->themes->put('breathe_slide',$my_slide,'integer', 'Display slide',true);
+		dcCore::app()->blog->settings->themes->put('breathe_slide',$my_slide,'integer', 'Display slide',true);
 
 		# Slide on the following pages scheme
 		if (!empty($_POST['breathe_slidenav']) && in_array($_POST['breathe_slidenav'],$breathe_slidenav_combo))
@@ -156,19 +154,19 @@ if (!empty($_POST))
 		{
 			$my_slidenav = $default_slidenav;
 		}
-		$core->blog->settings->themes->put('breathe_slidenav',$my_slidenav,'string','Slidenav display',true);
+		dcCore::app()->blog->settings->themes->put('breathe_slidenav',$my_slidenav,'string','Slidenav display',true);
 
 		// Blog refresh
-		$core->blog->triggerBlog();
+		dcCore::app()->blog->triggerBlog();
 
 		// Template cache reset
-		$core->emptyTemplatesCache();
+		dcCore::app()->emptyTemplatesCache();
 
 		dcPage::success(__('Theme configuration has been successfully updated.'),true,true);
 	}
 	catch (Exception $e)
 	{
-		$core->error->add($e->getMessage());
+		dcCore::app()->error->add($e->getMessage());
 	}
 }
 
@@ -180,7 +178,7 @@ echo
 '<p class="field"><label>'.__('Menu to display:').'</label>'.
 form::combo('breathe_menu',$breathe_menu_combo,$my_menu).
 '</p>'.
-'<p class="info">'.__('Plugins menu allowed: <a href="http://forum.dotclear.org/viewtopic.php?id=32705">Adjaya Menu</a> plugin (horizontal and vertical), or SimpleMenu.').'</p>'.
+'<p class="info">'.__('Plugins menu allowed: <a href="http://plugins.dotaddict.org/dc2/details/menu">Menu</a> plugin (horizontal and vertical), or SimpleMenu.').'</p>'.
 '</div>';
 
 # Color scheme
@@ -200,7 +198,7 @@ form::combo('breathe_dock',$breathe_dock_combo,$my_dock).
 '<p class="info">'.__('To display pictures in the dock, you must have installed the plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>.').'</p>'.
 '</div>';
 
-# Slides
+# slides
 echo
 '<div class="fieldset"><h4>'.__('Slides').'</h4>'.
 '<p class="info">'.__('To display pictures in a slide, you must have installed the plugin <a href="http://plugins.dotaddict.org/dc2/details/listImages">ListImages</a>.<br />The slides can display originals images 650px wide x 300px high.<br />They are positioned under the menu bar, the range of tickets will be below and sidebar to the right.<br />It is not possible to simultaneously view two slides in the blog.').'</p>'.
@@ -234,7 +232,7 @@ echo
 form::textarea('slide2',60,20,html::escapeHTML($html_contentslide[2])).'</label></p>'.
 '<p class="info">'.__('By default, the slide is based on the last 4 selected tickets. However, you can use it to display the Notes of a category or tag.<br />For a specific class will be put in place of <code>&lt;tpl:Entries selected="1" lastn="4" ignore_pagination="1" no_context="1"&gt;</code> this <code>&lt;tpl:Entries category="Url-of-the-category" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.<br />And for a specific tag, this <code>&lt;tpl:Entries tag="Name of the tag" lastn="4" ignore_pagination="1" no_context="1"&gt;</code>.').'</p>';
 
-# Slide on the following pages
+# slide on the following pages
 echo
 '<p class="field"><label>'.__('Display on the following pages:').'</label>'.
 form::combo('breathe_slidenav',$breathe_slidenav_combo,$my_slidenav).

@@ -12,31 +12,31 @@ END LICENSE BLOCK */
 
 if (!defined('DC_RC_PATH')) { return; }
 
-l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/public');
+l10n::set(dirname(__FILE__) . '/locales/' . dcCore::app()->lang. '/public');
 
-$core->addBehavior('publicHeadContent','breathePublicHeadContent');
+dcCore::app()->addBehavior('publicHeadContent','breathePublicHeadContent');
 
-function breathePublicHeadContent($core)
+function breathePublicHeadContent()
 {
     # appel css menu
-	$style = $core->blog->settings->themes->breathe_menu;
-	if (!preg_match('/^menuH|menuV|simplemenu$/',$style)) {
+	$style = dcCore::app()->blog->settings->themes->breathe_menu;
+	if (!preg_match('/^menuH|menuV|simplemenu$/', (string) $style)) {
 		$style = 'menuV';
 	}
 
-	$theme_url = $core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme;
+	$theme_url = dcCore::app()->blog->settings->system->themes_url.'/'.dcCore::app()->blog->settings->system->theme;
 	echo '<link rel="stylesheet" type="text/css" media="projection, screen" href="'.$theme_url."/css/menus/".$style.".css\" />\n";
 
     # appel css couleur
-    $style = $core->blog->settings->themes->breathe_color;
-	if (!preg_match('/^gray|spring|summer|autumn|winter$/',$style)) {
+    $style = dcCore::app()->blog->settings->themes->breathe_color;
+	if (!preg_match('/^gray|spring|summer|autumn|winter$/', (string) $style)) {
 		$style = 'gray';
 	}
 
 	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/colors/".$style.".css\" />\n";
 
     # appel css dock
-    if ($core->blog->settings->themes->breathe_dock=='yesdock')
+    if (dcCore::app()->blog->settings->themes->breathe_dock=='yesdock')
     {
         echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/dock/dock.css\" />\n";
 	    echo '<script type="text/javascript" src="'.$theme_url."/js/dock.js\"></script>\n";
@@ -44,9 +44,9 @@ function breathePublicHeadContent($core)
 
     # appel css slide1/slide2 ou aucun
     # appel css slide on the following pages
-    if ($core->blog->settings->themes->breathe_slide!=0)
+    if (dcCore::app()->blog->settings->themes->breathe_slide!=0)
     {
-        if ($core->blog->settings->themes->breathe_slide==1)
+        if (dcCore::app()->blog->settings->themes->breathe_slide==1)
         {
             echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$theme_url."/css/slides/slide1.css\" />\n";
            // echo '<script type="text/javascript" src="'.$theme_url."/js/s3Slider.js\"></script>\n";
@@ -60,22 +60,20 @@ function breathePublicHeadContent($core)
 	}
 }
 
-$core->tpl->addBlock('BreatheIf', array('tplBreathe', 'BreatheIf'));
-$core->tpl->addBlock('BreatheIfOnFollowingPages', array('tplBreathe', 'BreatheIfOnFollowingPages'));
+dcCore::app()->tpl->addBlock('BreatheIf', array('tplBreathe', 'BreatheIf'));
+dcCore::app()->tpl->addBlock('BreatheIfOnFollowingPages', array('tplBreathe', 'BreatheIfOnFollowingPages'));
 
 class tplBreathe
 {
     public static function BreatheIf($attr,$content)
     {
-        global $core;
-
-        if (!empty($attr['slide']) && ($attr['slide']==$core->blog->settings->themes->breathe_slide))
+        if (!empty($attr['slide']) && ($attr['slide']==dcCore::app()->blog->settings->themes->breathe_slide))
         {
             return $content;
 		}
         if (!empty($attr['dock'])
             && ((strtolower($attr['dock'])=='yes') || ($attr['dock']==1))
-            && ($core->blog->settings->themes->breathe_dock=='yesdock'))
+            && (dcCore::app()->blog->settings->themes->breathe_dock=='yesdock'))
         {
             return $content;
 		}
@@ -83,9 +81,7 @@ class tplBreathe
 
     public static function BreatheIfOnFollowingPages($attr,$content)
     {
-        global $core;
-
-        if ($core->url->type=='default-page' && $core->blog->settings->themes->breathe_slidenav=='yesslidenav')
+        if (dcCore::app()->url->type=='default-page' && dcCore::app()->blog->settings->themes->breathe_slidenav=='yesslidenav')
         {
             return $content;
         }
@@ -95,42 +91,14 @@ class tplBreathe
 
 class behaviorsExcludeCurrentPost
 {
-	public static function templateBeforeBlock($core,$b,$attr)
+	public static function templateBeforeBlock($b,$attr)
 	{
 	  if ($b == 'Entries' && isset($attr['exclude_current']) && $attr['exclude_current'] == 1)
 	  {
 		return
 		"<?php\n".
-		'$params["sql"] = "AND P.post_url != \'".$_ctx->posts->post_url."\' ";'."\n".
+		'$params["sql"] = "AND P.post_url != \'".dcCore::app()->ctx->posts->post_url."\' ";'."\n".
 		"?>\n";
 	  }
 	}
-}
-
-# gravatar
-$core->tpl->addValue('gravatar', array('gravatar', 'tplGravatar'));
-
-class gravatar {
-
-  const
-    URLBASE = 'http://www.gravatar.com/avatar.php?gravatar_id=%s&amp;default=%s&amp;size=%d',
-    HTMLTAG = '<img src="%s" class="%s" alt="%s" />',
-    DEFAULT_SIZE = '40',
-    DEFAULT_CLASS = 'gravatar_img',
-    DEFAULT_ALT = 'Gravatar de %s';
-
-  public static function tplGravatar($attr)
-  {
-    $md5mail = '\'.md5(strtolower($_ctx->comments->getEmail(false))).\'';
-    $size    = array_key_exists('size',   $attr) ? $attr['size']   : self::DEFAULT_SIZE;
-    $class   = array_key_exists('class',  $attr) ? $attr['class']  : self::DEFAULT_CLASS;
-    $alttxt  = array_key_exists('alt',    $attr) ? $attr['alt']    : self::DEFAULT_ALT;
-    $altimg  = array_key_exists('altimg', $attr) ? $attr['altimg'] : '';
-    $gurl    = sprintf(self::URLBASE,
-                       $md5mail, urlencode($altimg), $size);
-    $gtag    = sprintf(self::HTMLTAG,
-                       $gurl, $class, preg_match("/%s/i", $alttxt) ?
-                                      sprintf($alttxt, '\'.$_ctx->comments->comment_author.\'') : $alttxt);
-    return '<?php echo \'' . $gtag . '\'; ?>';
-  }
 }

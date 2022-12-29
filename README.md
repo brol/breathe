@@ -1,7 +1,7 @@
 Breathe est un thème pour Dotclear2.
 
 Depuis "Personnaliser le thème", il est possible de choisir :
-* le type de menu à afficher (Simplemenu ou [Menu] (http://forum.dotclear.org/viewtopic.php?id=32705))
+* le type de menu à afficher (Simplemenu ou [Menu] (http://plugins.dotaddict.org/dc2/details/menu))
 * un environnement coloré prédéfini (si le thème rencontre un minimum de succès, je m'y attèlerai...)
 * d'afficher ou non un dock au-dessus du footer qui liste les 25 derniers billets ayant une image (le plugin [listImages] (http://plugins.dotaddict.org/dc2/details/listImages) est requis)
 * d'afficher en page d'accueil deux types de slides avec ou sans vignettes (le plugin [listImages] (http://plugins.dotaddict.org/dc2/details/listImages) est requis)
