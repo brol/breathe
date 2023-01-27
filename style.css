@@ -84,7 +84,6 @@ html[xmlns] .clearfix { display: block; }
   margin : 0 10px;
   padding : 1px;
   height : 27px;
-  -moz-border-radius : 100px;
   -webkit-border-radius : 100px;
   position : absolute;
   top : 10px;
@@ -95,7 +94,6 @@ html[xmlns] .clearfix { display: block; }
   padding : 0;
   height : 25px;
   border : none;
-  -moz-border-radius : 100px;
   -webkit-border-radius : 100px;
 }
 #topsearch p #q {
@@ -374,7 +372,8 @@ div.post-intro-moy {
 .dc-page .page-content,
 .dc-search .page-content {
   text-align:justify;
-  padding:22px 22px 0;
+  /*padding:22px 22px 0;*/
+  padding: 18px 22px;
 }
 .dc-post .post-content, .dc-post .post-excerpt,
 .dc-page .post-content, .dc-page .post-excerpt {
@@ -390,10 +389,10 @@ div.post-intro-moy {
 .dc-page .post-content img, .dc-page .post-excerpt img {
   max-width:100%;
 }
-.dc-post .page-content p,
+/*.dc-post .page-content p,
 .dc-page .page-content p {
   margin-bottom: 1.5em;
-}
+}*/
 
 /* Post Footer */
 .post-footer {
@@ -705,7 +704,6 @@ p.message {
   padding : 0;
   height : 25px;
   border : none;
-  -moz-border-radius : 100px;
   -webkit-border-radius : 100px;
 }
 #sidebar #search p #q {
@@ -1018,7 +1016,6 @@ p.message {
   float:left;
   display:block;
   -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 .footer-cat li a:hover {

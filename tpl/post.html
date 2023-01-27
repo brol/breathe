@@ -25,10 +25,11 @@
 
 <tpl:Block name="html-head">
 	{{tpl:parent}}
-  <script type="application/json" id="dc_post_remember_str-data">
-    {"post_remember_str": "{{tpl:lang Remember me on this blog}}"}
-  </script>
-  <script src="{{tpl:BlogQmarkURL}}pf=post.js"></script>
+  <tpl:EntryIf comments_active="1">
+    <script type="application/json" id="dc_post_remember_str-data">
+    { "post_remember_str": "{{tpl:lang Remember me on this blog}}" }
+    </script>
+    <script src="{{tpl:BlogQmarkURL}}pf=post.js"></script>
   <script>
   $(document).ready(function() {
   if ($('#pr').is(':visible')) {jQuery('.hidecomment-form').show()} else {$(".hidecomment-form").hide()};
@@ -41,6 +42,7 @@
   	    });
   });
   </script>
+  </tpl:EntryIf>
 </tpl:Block>
 
 <tpl:Block name="body-tag"><body class="dc-post"></tpl:Block>
@@ -76,8 +78,6 @@
 				<!-- # --BEHAVIOR-- publicEntryAfterContent -->
 				{{tpl:SysBehavior behavior="publicEntryAfterContent"}}
 				</div>
-
-        {{tpl:include src="user_share.html"}}
       </div><!-- End post-content -->
 
     <tpl:EntryTags>
