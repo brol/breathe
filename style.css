@@ -73,7 +73,7 @@ html[xmlns] .clearfix { display: block; }
   margin:5px 0 0 40px;
 }
 #blogDescription {
-  margin : 50px 0 0 0;
+  margin : 35px 0 0 0;
   padding:0;
   position : absolute;
   /* display:none; */ /* à décommenter pour masquer la description du blog */

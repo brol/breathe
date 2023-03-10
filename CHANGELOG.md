@@ -1,4 +1,4 @@
-v0.6 - 27/12/2022 - Pierre Van Glabeke
+v0.6 - 19/02/2023 - Pierre Van Glabeke
 * suppression user-share
 * màj css/html
 * dc2.24 requis

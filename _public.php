@@ -89,16 +89,23 @@ class tplBreathe
     }
 }
 
+# Exclude Current Post
+# Source: http://tips.dotaddict.org/
+dcCore::app()->addBehavior('templateBeforeBlockV2', ['behaviorsExcludeCurrentPost','templateBeforeBlock']);
+
 class behaviorsExcludeCurrentPost
 {
-	public static function templateBeforeBlock($b,$attr)
-	{
-	  if ($b == 'Entries' && isset($attr['exclude_current']) && $attr['exclude_current'] == 1)
-	  {
-		return
-		"<?php\n".
-		'$params["sql"] = "AND P.post_url != \'".dcCore::app()->ctx->posts->post_url."\' ";'."\n".
-		"?>\n";
-	  }
-	}
+    public static function templateBeforeBlock(string $block, ArrayObject $attr): string
+    {
+        if ($block == 'Entries' && isset($attr['exclude_current']) && $attr['exclude_current'] == 1) {
+            return
+            "<?php\n" .
+            "if (!isset(\$params)) { \$params = []; }\n" .
+            "if (!isset(\$params['sql'])) { \$params['sql'] = ''; }\n" .
+            '$params["sql"] .= "AND P.post_url != \'".dcCore::app()->ctx->posts->post_url."\' ";' . "\n" .
+            "?>\n";
+        }
+
+        return '';
+    }
 }
